@@ -18,7 +18,7 @@ Justin has ADHD. One short command should produce a finished, ready to review ou
 * Pillars (one per post), from Justin's Growth Lab: Faith, Impact, Joy, Business (Business includes STR and real estate authority).
 * Reel text: bubbly but clean. Small setup line over one huge word (`style: pop` in reel.json). Font is picked by letter with `"font": "G"` in reel.json; all lettered styles live in `scripts/caption_styles.py`. See `brand/style-guide.md`.
 * No end card with handle or pillars on Reels unless Justin asks for one (removed Oct 2026).
-* ALWAYS render 5 font style versions of every Reel (`"font_options": [5 letters]` in reel.json). make_reel.py then outputs `reel-<letter>.mp4` for each plus `compare-fonts.mp4`, a labeled side by side preview. Mix in Justin's favorites U (Instrument Serif) and V (Montserrat + Caveat in light oak) with three others that suit the footage.
+* ALWAYS render 5 font style versions of every Reel (`"font_options": [5 letters]` in reel.json). make_reel.py then outputs `reel-<letter>.mp4` for each plus `compare-fonts.mp4`, a labeled side by side preview. Commit and push EVERY version (with beat, silent, cover) even after Justin picks one, and list them all in the project tracker (claude/content-tracker.md). Never delete unchosen versions. Mix in Justin's favorites U (Instrument Serif) and V (Montserrat + Caveat in light oak) with three others that suit the footage.
 * Rotation buckets: Educate, Prove, Personal, Offer. Target 4 to 6 posts a week, 3+ Reels.
 * Nothing posts automatically. Status flow: idea, drafted, in review, approved, scheduled, posted.
 * Never use "Road to 30K" as a brand, series, hashtag or kicker. The repo name is just a folder name.
