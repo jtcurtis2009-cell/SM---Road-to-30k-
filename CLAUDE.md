@@ -16,7 +16,8 @@ Justin has ADHD. One short command should produce a finished, ready to review ou
 * In captions, never ask people to "reply yes" or "comment X". Ask a plain question.
 * Reels: on screen hook in the first 2 seconds, native captions.
 * Pillars (one per post), from Justin's Growth Lab: Faith, Impact, Joy, Business (Business includes STR and real estate authority).
-* Reel text: bubbly but clean. Small DM Sans setup line over one huge Fraunces Soft word (`style: pop` in reel.json). See `brand/style-guide.md`.
+* Reel text: bubbly but clean. Small setup line over one huge word (`style: pop` in reel.json). Font is picked by letter with `"font": "G"` in reel.json; all lettered styles live in `scripts/caption_styles.py`. See `brand/style-guide.md`.
+* No end card with handle or pillars on Reels unless Justin asks for one (removed Oct 2026).
 * Rotation buckets: Educate, Prove, Personal, Offer. Target 4 to 6 posts a week, 3+ Reels.
 * Nothing posts automatically. Status flow: idea, drafted, in review, approved, scheduled, posted.
 * Never use "Road to 30K" as a brand, series, hashtag or kicker. The repo name is just a folder name.
@@ -30,10 +31,14 @@ Read `brand/style-guide.md` before planning or writing. It holds the Bloom found
 * `scripts/render_carousel.py` renders `slides.json` to 1080x1350 PNGs in `exports/<slug>/`
 * `scripts/make_reel.py` cuts a branded Reel from raw footage using `reel.json` (segments, speed, text overlays) into `exports/<slug>/reel.mp4`
 * `make_reel.py` grades: set `"grade": "lift_dark"` in reel.json for dark indoor footage (lifts shadows, light denoise), `"lift_light"` for slightly dim footage, or pass a raw ffmpeg filter string
-* `scripts/caption_fonts.py <frame.jpg> "<setup>" "<big word>"` renders a lettered sheet of 10 caption font pairs over a real frame so Justin can pick one
+* `scripts/caption_fonts.py <frame.jpg> "<setup>" "<big word>" [out.jpg] [letters]` renders a lettered sheet of caption styles (A to T) over a real frame so Justin can pick one
+* Music: add `"music": {"file": "../../../raw/music/track.mp3", "start": 0, "volume": 1.0}` and optionally `"original_audio": 0.3` (keeps the clip's own sound under the music) to reel.json. Output is loudness normalized, and `reel-silent.mp4` is saved too. Only use tracks Justin has rights to (royalty free or licensed); for trending songs, post `reel-silent.mp4` and add the audio inside Instagram so the Reel links to the audio page.
 * `raw/` raw footage, never committed
 * `scripts/lint_copy.py` checks copy against brand rules
 * `exports/` finished images ready to upload
+
+## Delivery
+Every finished, edited video also goes to Justin's Google Drive folder **Instagram Ready Posts** (name the file `<slug>.mp4`, upload the cover too).
 
 ## Making a new carousel
 1. Copy an existing post folder, rename it `YYYY-MM-DD-slug`.

@@ -3,13 +3,40 @@
   "handle": "@justinthymecurtis",
   "source": "../../../raw/discipline-habits.mov",
   "segments": [
-    {"start": 0.0, "end": 16.5, "speed": 1.0}
+    {
+      "start": 0.0,
+      "end": 16.5,
+      "speed": 1.0
+    }
   ],
   "overlays": [
-    {"style": "pop", "setup": "motivation is a", "text": "feeling.", "size": 220, "top": 230, "start": 0.0, "end": 3.4},
-    {"style": "pop", "setup": "discipline is a", "text": "habit.", "size": 250, "top": 230, "start": 3.8, "end": 7.4},
-    {"style": "pop", "setup": "same bag. same time.", "text": "every\nday.", "size": 230, "top": 230, "start": 7.8, "end": 11.6},
-    {"style": "pop_end", "setup": "build the", "text": "habits", "accent": "FAITH  ·  IMPACT  ·  JOY  ·  BUSINESS", "size": 220, "top": 560, "start": 12.2, "end": 16.5}
+    {
+      "style": "pop",
+      "setup": "motivation is a",
+      "text": "feeling.",
+      "size": 220,
+      "top": 230,
+      "start": 0.0,
+      "end": 3.4
+    },
+    {
+      "style": "pop",
+      "setup": "discipline is a",
+      "text": "habit.",
+      "size": 250,
+      "top": 230,
+      "start": 3.8,
+      "end": 7.4
+    },
+    {
+      "style": "pop",
+      "setup": "same bag. same time.",
+      "text": "every\nday.",
+      "size": 230,
+      "top": 230,
+      "start": 7.8,
+      "end": 12.6
+    }
   ],
   "grade": "lift_dark",
   "cover_at": 1.2

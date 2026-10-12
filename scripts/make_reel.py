@@ -6,11 +6,18 @@ Usage:
 reel.json fields:
     source:    path to the raw clip (absolute, or relative to the post folder)
     segments:  [{"start": s, "end": s, "speed": 1.0}]  pieces kept, in order
-    overlays:  [{"text": "...", "accent": "...", "start": s, "end": s, "style": "hook" | "end"}]
+    overlays:  [{"text": "...", "setup": "...", "start": s, "end": s, "style": "pop" | "pop_end" | "hook" | "end",
+                 "font": "G" (optional, overrides the reel level font)}]
                times are on the FINISHED reel timeline
+    font:      caption style letter from scripts/caption_styles.py (default "A")
+    grade:     "default" | "lift_dark" | "lift_light" | raw ffmpeg filter string
+    music:     optional {"file": "path.mp3", "start": 0, "volume": 1.0, "fade_in": 0.3, "fade_out": 1.5}
+               file is relative to the post folder (put tracks in raw/music/, never commit them)
+    original_audio: optional volume for the clip's own sound (0 = off, 0.3 = under the music, 1 = full)
 
-Output: exports/<slug>/reel.mp4 (1080x1920, 30fps, no audio so trending audio
-can be added in Instagram) and cover.jpg
+Output: exports/<slug>/reel.mp4 and cover.jpg. With music or original audio, reel.mp4 has
+sound (loudness normalized for Instagram) and reel-silent.mp4 is also saved so trending
+audio can still be added in Instagram instead.
 """
 import base64
 import html
@@ -20,6 +27,8 @@ import sys
 from pathlib import Path
 
 from playwright.sync_api import sync_playwright
+
+from caption_styles import face_css, faces_used, style as caption_style
 
 ROOT = Path(__file__).resolve().parent.parent
 P = json.loads((ROOT / "brand" / "palette.json").read_text())
@@ -74,17 +83,18 @@ def esc(t):
     return html.escape(t).replace("\n", "<br>")
 
 
-def overlay_html(o, handle):
+def overlay_html(o, handle, font="A", font_css=FONT_CSS):
     if o.get("style") in ("pop", "pop_end"):
-        size = o.get("size", 250)
+        st = caption_style(o.get("font", font))
+        size = round(o.get("size", 250) * st["scale"])
         top = o.get("top", 380)
-        setup = f'<div class="s">{esc(o["setup"])}</div>' if o.get("setup") else ""
+        setup = f'<div class="s" style="{st["setup"]}">{esc(o["setup"])}</div>' if o.get("setup") else ""
         tail = ""
         if o["style"] == "pop_end":
             tail = (f'<div class="a">{esc(o.get("accent", ""))}</div>' if o.get("accent") else "") + f'<div class="h">{handle}</div>'
         body = (f'<div class="pop" style="top:{top}px">{setup}'
-                f'<div class="b" style="font-size:{size}px">{esc(o["text"])}</div>{tail}</div>')
-        return f"<!doctype html><html><head><meta charset='utf-8'><style>{FONT_CSS}{CSS}</style></head><body>{body}</body></html>"
+                f'<div class="b" style="{st["big"]};font-size:{size}px">{esc(o["text"])}</div>{tail}</div>')
+        return f"<!doctype html><html><head><meta charset='utf-8'><style>{font_css}{CSS}</style></head><body>{body}</body></html>"
     if o.get("style") == "end":
         body = f"""<div class="shade"></div><div class="end"><div class="k">{esc(o.get('accent', 'JUSTIN THYME'))}</div>
         <h1>{esc(o['text'])}</h1><div class="h">{handle}</div></div>"""
@@ -94,19 +104,58 @@ def overlay_html(o, handle):
     return f"<!doctype html><html><head><meta charset='utf-8'><style>{CSS}</style></head><body>{body}</body></html>"
 
 
-def render_overlays(overlays, handle, out_dir):
+def render_overlays(overlays, handle, out_dir, font="A"):
+    letters = {o.get("font", font).upper() for o in overlays}
+    font_css = face_css(faces_used(letters))
     paths = []
     with sync_playwright() as p:
         b = p.chromium.launch()
         page = b.new_page(viewport={"width": W, "height": H})
         for i, o in enumerate(overlays):
-            page.set_content(overlay_html(o, handle))
+            page.set_content(overlay_html(o, handle, font, font_css))
             page.wait_for_timeout(120)
             f = out_dir / f"overlay-{i:02d}.png"
             page.screenshot(path=str(f), omit_background=True)
             paths.append(f)
         b.close()
     return paths
+
+
+def _atempo(speed):
+    parts, sp = [], speed
+    while sp > 2.0:
+        parts.append("atempo=2.0"); sp /= 2.0
+    while sp < 0.5:
+        parts.append("atempo=0.5"); sp /= 0.5
+    parts.append(f"atempo={sp:.4f}")
+    return ",".join(parts)
+
+
+def add_audio(silent, reel, src, segs, total, music, orig_vol, post):
+    """Mux music and/or the clip's own sound under the finished video."""
+    inputs, fc, mix = ["-i", str(silent)], [], []
+    if orig_vol > 0:
+        inputs += ["-i", str(src)]
+        for i, s in enumerate(segs):
+            fc.append(f"[1:a]atrim=start={s['start']}:end={s['end']},asetpts=PTS-STARTPTS,"
+                      f"{_atempo(s.get('speed', 1.0))}[oa{i}]")
+        fc.append("".join(f"[oa{i}]" for i in range(len(segs))) + f"concat=n={len(segs)}:v=0:a=1,volume={orig_vol}[orig]")
+        mix.append("[orig]")
+    if music:
+        mf = Path(music["file"])
+        if not mf.is_absolute():
+            mf = post / mf
+        idx = len(inputs) // 2
+        inputs += ["-ss", str(music.get("start", 0)), "-i", str(mf)]
+        fi, fo = music.get("fade_in", 0.3), music.get("fade_out", 1.5)
+        fc.append(f"[{idx}:a]atrim=duration={total:.3f},asetpts=PTS-STARTPTS,volume={music.get('volume', 1.0)},"
+                  f"afade=t=in:st=0:d={fi},afade=t=out:st={max(0, total - fo):.3f}:d={fo}[mus]")
+        mix.append("[mus]")
+    pre = (f"{''.join(mix)}amix=inputs={len(mix)}:duration=longest:normalize=0," if len(mix) > 1 else f"{mix[0]}")
+    fc.append(f"{pre}loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000[aout]")
+    subprocess.run(["ffmpeg", "-v", "error", "-y", *inputs, "-filter_complex", ";".join(fc),
+                    "-map", "0:v", "-map", "[aout]", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k",
+                    "-t", f"{total:.3f}", "-movflags", "+faststart", str(reel)], check=True)
 
 
 def main(post_dir):
@@ -122,7 +171,7 @@ def main(post_dir):
 
     segs = spec["segments"]
     total = sum((s["end"] - s["start"]) / s.get("speed", 1.0) for s in segs)
-    pngs = render_overlays(spec["overlays"], spec.get("handle", "@justinthymecurtis"), work)
+    pngs = render_overlays(spec["overlays"], spec.get("handle", "@justinthymecurtis"), work, spec.get("font", "A"))
 
     fc = []
     for i, s in enumerate(segs):
@@ -142,10 +191,17 @@ def main(post_dir):
         last = f"c{i}"
 
     reel = out / "reel.mp4"
+    silent = out / "reel-silent.mp4"
+    music = spec.get("music")
+    orig_vol = float(spec.get("original_audio", 0) or 0)
+    has_audio = bool(music) or orig_vol > 0
+    vid_out = silent if has_audio else reel
     cmd = ["ffmpeg", "-v", "error", "-y", *inputs, "-filter_complex", ";".join(fc), "-map", f"[{last}]",
            "-t", f"{total:.3f}", "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p",
-           "-movflags", "+faststart", "-an", str(reel)]
+           "-movflags", "+faststart", "-an", str(vid_out)]
     subprocess.run(cmd, check=True)
+    if has_audio:
+        add_audio(silent, reel, src, segs, total, music, orig_vol, post)
 
     cover_t = spec.get("cover_at", 0.5)
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", str(cover_t), "-i", str(reel), "-frames:v", "1",
