@@ -60,7 +60,7 @@ body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
 .lesson p { font-size:42px; line-height:1.45; font-weight:400; color:%(charcoal_soft)s; max-width:860px; }
 .cta h1 { font-family:'Inter Display'; font-weight:800; font-size:132px; letter-spacing:-5px; line-height:1; margin-top:auto; }
 .cta p { font-size:42px; line-height:1.45; margin-top:44px; max-width:880px; opacity:.92; }
-.cta .accent { font-family:'Inter Display'; font-weight:700; font-size:50px; color:%(rust)s; margin-top:56px; line-height:1.2; letter-spacing:-1px; margin-bottom:40px; }
+.cta .accent { font-family:'Inter Display'; font-weight:700; font-size:50px; color:%(rust_light)s; margin-top:56px; line-height:1.2; letter-spacing:-1px; margin-bottom:40px; }
 .story { background:%(charcoal)s; color:%(sand)s; padding:0; }
 .story .bg { position:absolute; inset:0; background-size:cover; background-position:center; }
 .story .ph { position:absolute; inset:0; background:radial-gradient(120%% 80%% at 70%% 20%%, %(denim)s 0%%, %(charcoal)s 70%%); }
