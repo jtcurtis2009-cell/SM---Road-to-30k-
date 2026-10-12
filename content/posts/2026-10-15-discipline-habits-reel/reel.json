@@ -39,5 +39,20 @@
     }
   ],
   "grade": "lift_dark",
-  "cover_at": 1.2
+  "cover_at": 1.2,
+  "font_options": [
+    "U",
+    "V",
+    "G",
+    "N",
+    "T"
+  ],
+  "music": {
+    "file": "../../../raw/music/discipline-dark-86.wav",
+    "start": 0,
+    "volume": 0.9,
+    "fade_in": 0.2,
+    "fade_out": 1.2
+  },
+  "original_audio": 0.35
 }

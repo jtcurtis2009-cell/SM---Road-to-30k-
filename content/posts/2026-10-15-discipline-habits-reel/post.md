@@ -10,11 +10,10 @@ status: in review
 
 # Heavy bag discipline (habits Reel)
 
-## On screen text (bubbly style: DM Sans setup line, Fraunces Soft headline)
+## On screen text (5 font versions: U, V, G, N, T. See compare-fonts.mp4)
 1. motivation is a / feeling. (0 to 3s, the hook)
 2. discipline is a / habit. (while working the bag)
 3. same bag. same time. / every day.
-4. build the / habits, FAITH · IMPACT · JOY · BUSINESS, @justinthymecurtis
 
 ## Hook options (line one of the caption)
 1. Motivation is a feeling. Discipline is a habit.
@@ -38,7 +37,7 @@ What's one habit you're building right now? 👇
 #discipline #habits #consistency #mindset #boxing #heavybag #entrepreneurlife #faithandfitness #growthmindset
 
 ## Audio
-Exported with no sound. Add a hard hitting, low tempo trending audio in Instagram or Edits so punches land on the beat. Original clip audio is in raw/discipline-habits.mov if you want the real bag hits underneath.
+reel-<letter>.mp4 has an original dark 86 bpm beat (scripts/make_beat.py, fully owned, no copyright risk) with the real bag hits mixed underneath at 35%. reel-<letter>-silent.mp4 is the version to use if you'd rather add a trending song inside Instagram.
 
 ## Notes
 * Raw clip: raw/discipline-habits.mov (IMG_5594, not committed to git).

@@ -18,6 +18,7 @@ Justin has ADHD. One short command should produce a finished, ready to review ou
 * Pillars (one per post), from Justin's Growth Lab: Faith, Impact, Joy, Business (Business includes STR and real estate authority).
 * Reel text: bubbly but clean. Small setup line over one huge word (`style: pop` in reel.json). Font is picked by letter with `"font": "G"` in reel.json; all lettered styles live in `scripts/caption_styles.py`. See `brand/style-guide.md`.
 * No end card with handle or pillars on Reels unless Justin asks for one (removed Oct 2026).
+* ALWAYS render 5 font style versions of every Reel (`"font_options": [5 letters]` in reel.json). make_reel.py then outputs `reel-<letter>.mp4` for each plus `compare-fonts.mp4`, a labeled side by side preview. Mix in Justin's favorites U (Instrument Serif) and V (Montserrat + Caveat in light oak) with three others that suit the footage.
 * Rotation buckets: Educate, Prove, Personal, Offer. Target 4 to 6 posts a week, 3+ Reels.
 * Nothing posts automatically. Status flow: idea, drafted, in review, approved, scheduled, posted.
 * Never use "Road to 30K" as a brand, series, hashtag or kicker. The repo name is just a folder name.
@@ -33,6 +34,7 @@ Read `brand/style-guide.md` before planning or writing. It holds the Bloom found
 * `make_reel.py` grades: set `"grade": "lift_dark"` in reel.json for dark indoor footage (lifts shadows, light denoise), `"lift_light"` for slightly dim footage, or pass a raw ffmpeg filter string
 * `scripts/caption_fonts.py <frame.jpg> "<setup>" "<big word>" [out.jpg] [letters]` renders a lettered sheet of caption styles (A to T) over a real frame so Justin can pick one
 * Music: add `"music": {"file": "../../../raw/music/track.mp3", "start": 0, "volume": 1.0}` and optionally `"original_audio": 0.3` (keeps the clip's own sound under the music) to reel.json. Output is loudness normalized, and `reel-silent.mp4` is saved too. Only use tracks Justin has rights to (royalty free or licensed); for trending songs, post `reel-silent.mp4` and add the audio inside Instagram so the Reel links to the audio page.
+* `scripts/make_beat.py raw/music/<name>.wav --bpm 86 --seconds 20 --mood dark|bright` generates an original, royalty free beat Justin fully owns. Use it when no licensed track is supplied.
 * `raw/` raw footage, never committed
 * `scripts/lint_copy.py` checks copy against brand rules
 * `exports/` finished images ready to upload

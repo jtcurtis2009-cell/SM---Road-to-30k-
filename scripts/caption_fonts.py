@@ -40,7 +40,7 @@ def main(frame, setup, big, out=None, letters=None):
     grid-template-columns:repeat({cols},{tw}px);background:#1A1D22}}
     .t{{position:relative;width:{tw}px;height:{th}px;background:url(data:image/jpeg;base64,{bg}) center/cover;
        border:2px solid #1A1D22;overflow:hidden}}
-    .cap{{position:absolute;left:16px;right:16px;top:95px;text-align:center;color:#fff;text-shadow:0 3px 18px rgba(0,0,0,.5)}}
+    .cap{{position:absolute;left:16px;right:16px;top:95px;font-size:23px;text-align:center;color:#fff;text-shadow:0 3px 18px rgba(0,0,0,.5)}}
     .s{{font-size:23px}} .b{{line-height:.92;margin-top:4px}}
     .lab{{position:absolute;left:0;right:0;bottom:0;padding:14px 16px;background:rgba(26,29,34,.88);color:#EDE7DD;
        font-family:DMSans;font-size:19px;font-weight:500}} .lab b{{color:#C8A982;font-size:26px;margin-right:6px}}

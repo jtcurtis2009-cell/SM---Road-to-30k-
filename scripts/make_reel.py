@@ -57,7 +57,7 @@ html, body {{ width:{W}px; height:{H}px; background:transparent; font-family:'In
 .end .k {{ font-weight:700; letter-spacing:10px; font-size:34px; color:{P['denim_light']}; }}
 .end h1 {{ font-family:'Inter Display'; font-weight:800; font-size:110px; letter-spacing:-4px; margin-top:18px;
            text-shadow:0 6px 30px rgba(0,0,0,.45); }}
-.pop {{ position:absolute; left:40px; right:40px; text-align:center; color:#fff; text-shadow:0 4px 26px rgba(0,0,0,.42); }}
+.pop {{ position:absolute; left:40px; right:40px; font-size:58px; text-align:center; color:#fff; text-shadow:0 4px 26px rgba(0,0,0,.42); }}
 .pop .s {{ font-family:'DMSans'; font-weight:600; font-size:58px; letter-spacing:-.5px; }}
 .pop .b {{ font-family:'Fraunces'; font-weight:900; font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 144;
           line-height:.86; letter-spacing:-8px; margin-top:8px; }}
@@ -158,9 +158,11 @@ def add_audio(silent, reel, src, segs, total, music, orig_vol, post):
                     "-t", f"{total:.3f}", "-movflags", "+faststart", str(reel)], check=True)
 
 
-def main(post_dir):
+def main(post_dir, font=None, suffix=""):
     post = Path(post_dir)
     spec = json.loads((post / "reel.json").read_text())
+    if font:
+        spec["font"] = font
     src = Path(spec["source"])
     if not src.is_absolute():
         src = post / src
@@ -190,8 +192,8 @@ def main(post_dir):
         fc.append(f"[{last}][o{i}]overlay=0:0:enable='between(t,{st},{en})'[c{i}]")
         last = f"c{i}"
 
-    reel = out / "reel.mp4"
-    silent = out / "reel-silent.mp4"
+    reel = out / f"reel{suffix}.mp4"
+    silent = out / f"reel{suffix}-silent.mp4"
     music = spec.get("music")
     orig_vol = float(spec.get("original_audio", 0) or 0)
     has_audio = bool(music) or orig_vol > 0
@@ -205,9 +207,40 @@ def main(post_dir):
 
     cover_t = spec.get("cover_at", 0.5)
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", str(cover_t), "-i", str(reel), "-frames:v", "1",
-                    "-q:v", "2", str(out / "cover.jpg")], check=True)
+                    "-q:v", "2", str(out / f"cover{suffix}.jpg")], check=True)
     print(f"Reel: {reel} ({total:.1f}s)")
+    return reel
+
+
+def compare(reels, letters, out_file):
+    """Side by side preview of every font version, labeled, with the audio of the first."""
+    inputs, fc = [], []
+    for i, (r, l) in enumerate(zip(reels, letters)):
+        inputs += ["-i", str(r)]
+        fc.append(f"[{i}:v]scale=432:768,drawbox=y=ih-56:w=iw:h=56:color=0x1A1D22@0.85:t=fill,"
+                  f"drawtext=fontfile={FONTS / 'Anton-Regular.ttf'}:text='{l}':fontsize=40:fontcolor=0xC8A982:"
+                  f"x=(w-tw)/2:y=h-50[p{i}]")
+    fc.append("".join(f"[p{i}]" for i in range(len(reels))) + f"hstack=inputs={len(reels)}[v]")
+    subprocess.run(["ffmpeg", "-v", "error", "-y", *inputs, "-filter_complex", ";".join(fc), "-map", "[v]",
+                    "-map", "0:a?", "-c:v", "libx264", "-crf", "23", "-pix_fmt", "yuv420p", "-c:a", "copy",
+                    "-movflags", "+faststart", str(out_file)], check=True)
+    print(f"Comparison: {out_file}")
+
+
+def run(post_dir, fonts=None):
+    """Render one Reel, or one per font letter when fonts (or reel.json "font_options") lists several.
+    Justin's standing rule: always give him 5 font styles to pick from."""
+    spec = json.loads((Path(post_dir) / "reel.json").read_text())
+    letters = list(fonts.upper()) if fonts else spec.get("font_options")
+    if not letters or len(letters) == 1:
+        return main(post_dir, letters[0] if letters else None)
+    reels = [main(post_dir, l, f"-{l}") for l in letters]
+    compare(reels, letters, reels[0].parent / "compare-fonts.mp4")
 
 
 if __name__ == "__main__":
-    main(sys.argv[1])
+    args = sys.argv[1:]
+    fonts = None
+    if "--fonts" in args:
+        i = args.index("--fonts"); fonts = args[i + 1]; del args[i:i + 2]
+    run(args[0], fonts)

@@ -18,6 +18,8 @@ FACES = {
     "DMSerifItalic": ("DMSerifDisplay-Italic.ttf", ""),
     "Playfair": ("PlayfairDisplay[wght].ttf", "font-weight:400 900;"),
     "InstrumentItalic": ("InstrumentSerif-Italic.ttf", ""),
+    "InstrumentRegular": ("InstrumentSerif-Regular.ttf", ""),
+    "Caveat": ("Caveat[wght].ttf", "font-weight:400 700;"),
     "Bricolage": ("BricolageGrotesque[opsz,wdth,wght].ttf", "font-weight:200 800;"),
     "Anton": ("Anton-Regular.ttf", ""),
     "Bebas": ("BebasNeue-Regular.ttf", ""),
@@ -77,6 +79,13 @@ STYLES = {
           "font-family:Anton;color:#C8A982;" + CAPS, 0.95),
     "T": ("Fraunces Soft in light oak + DM Sans", DM,
           "font-family:Fraunces;font-weight:900;font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 144;letter-spacing:-.03em;color:#C8A982", 1.0),
+    # Set 3, from Justin's references (Oct 2026)
+    "U": ("Instrument Serif, upright setup + italic word (trending)",
+          "font-family:InstrumentRegular;font-size:1.55em;letter-spacing:-.01em;color:#EDE7DD",
+          "font-family:InstrumentItalic;letter-spacing:-.02em;color:#EDE7DD", 1.1),
+    "V": ("Montserrat ExtraBold + Caveat handwritten word in light oak",
+          "font-family:Montserrat;font-weight:800;font-size:1.3em;letter-spacing:-.02em",
+          "font-family:Caveat;font-weight:700;letter-spacing:-.01em;color:#C8A982", 1.1),
 }
 
 
