@@ -34,3 +34,16 @@ Bloom grew from a founder's personal transformation post into a nine figure bran
 * **Trend proof:** CapCut templates show usage counts, which is a quick signal of what's trending. TikTok Creative Center is free and shows rising hashtags and songs with popularity over time.
 * **Claude's part:** Justin uploads raw clips. Claude cuts, crops to 9:16, adds burned in captions and branded hook text with ffmpeg, then saves to `exports/`.
 * **Scheduling:** Metricool, posts for review only.
+
+## Reel text style (Justin's reference: "POV, you found the Airbnb spot")
+What Justin likes: bubbly, vibrant, but clean.
+* A small sans setup line (lowercase, medium weight, white) sitting on top of one huge, chunky serif word or phrase, stacked tight and centered.
+* White text, no box, a soft shadow only, over moody or darker footage.
+* One idea per screen. The big word is the punchline.
+* Research backing: large serif works for short static hook overlays, but stick to bold sans for running captions (Blitzcut 2026 caption font guide). Running captions should be about 7 to 10% of frame height. About 85% of Instagram video is watched with the sound off, so the text carries the message.
+
+Options rendered in `brand/caption-style-options.jpg` (all free Google Fonts, files in `brand/fonts/`):
+* A: Gloock with DM Sans (closest match to the reference)
+* B: Fraunces Soft Black with DM Sans (the most bubbly)
+* C: Bricolage Grotesque with Instrument Serif italic in a warm peach
+* D: Playfair Display Black with DM Sans and a rust period
