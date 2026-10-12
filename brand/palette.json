@@ -1,0 +1,14 @@
+{
+  "_note": "Starter palette for Justin Thyme / STR Insider. Pending Justin's approval.",
+  "charcoal": "#2B2926",
+  "charcoal_soft": "#3A3733",
+  "denim": "#4A6B8A",
+  "denim_light": "#8FA9C2",
+  "rust": "#B5562D",
+  "sand": "#F2ECE3",
+  "stone": "#D9D0C3",
+  "fonts": {
+    "headline": "Inter Display, 800",
+    "body": "Inter, 400 to 600"
+  }
+}

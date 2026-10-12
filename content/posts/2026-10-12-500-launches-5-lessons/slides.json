@@ -1,0 +1,50 @@
+{
+  "slug": "2026-10-12-500-launches-5-lessons",
+  "handle": "@justinthymecurtis",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "STR INSIDER",
+      "title": "500+ Airbnb launches.\n11 years.",
+      "accent": "5 lessons nobody told me.",
+      "footer": "Swipe"
+    },
+    {
+      "type": "lesson",
+      "number": "01",
+      "title": "The property is not the product.",
+      "body": "The stay is. Guests don't remember your square footage. They remember how the place made them feel the second they walked in."
+    },
+    {
+      "type": "lesson",
+      "number": "02",
+      "title": "Your first 10 reviews decide your next 100 bookings.",
+      "body": "Over deliver early. Price a little lower, check in more, fix things fast. Those first reviews carry the listing for years."
+    },
+    {
+      "type": "lesson",
+      "number": "03",
+      "title": "Pricing is a daily job, not a setting.",
+      "body": "Set it and forget it is how good homes leave money on the table. Events, seasons and weekdays all move the number."
+    },
+    {
+      "type": "lesson",
+      "number": "04",
+      "title": "Photos are your storefront.",
+      "body": "Cheap photos are the most expensive mistake in this business. Nobody books a home they can't picture themselves in."
+    },
+    {
+      "type": "lesson",
+      "number": "05",
+      "title": "Systems beat hustle.",
+      "body": "Hustle got me my first launches. Systems got me to 500. Same lesson I live by in the gym and in life."
+    },
+    {
+      "type": "cta",
+      "kicker": "ROAD TO 30K",
+      "title": "I'm Justin.",
+      "body": "I'm sharing everything I've learned about short term rentals, mindset and discipline, out loud, one post at a time.",
+      "accent": "Follow along. Save this for your next launch."
+    }
+  ]
+}
