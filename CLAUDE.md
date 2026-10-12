@@ -38,7 +38,7 @@ Read `brand/style-guide.md` before planning or writing. It holds the Bloom found
 * `exports/` finished images ready to upload
 
 ## Delivery
-Every finished, edited video also goes to Justin's Google Drive folder **Instagram Ready Posts** (name the file `<slug>.mp4`, upload the cover too).
+Every finished, edited video also goes to the **Instagram Ready Posts** folder in Justin's personal Google Drive (jtcurtis.2009@gmail.com), never the NOVIQ Drive (justin@noviq.com). Check which account the Drive connector is signed into before uploading (name the file `<slug>.mp4`, upload the cover too).
 
 ## Making a new carousel
 1. Copy an existing post folder, rename it `YYYY-MM-DD-slug`.
