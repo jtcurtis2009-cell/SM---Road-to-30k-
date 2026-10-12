@@ -3,7 +3,7 @@
 Personal brand social media system for Justin Curtis (@justinthymecurtis). This is NOT NOVIQ. Never use NOVIQ branding, colors or claims here.
 
 ## Who it's for
-Justin: 11+ years in short term rentals, 500+ Airbnb launches, North County San Diego, licensed CA agent. The brand blends STR and real estate authority with mindset, discipline and training, travel, and caring for others. Goal: 30,000 followers.
+Justin: works in short term rentals and real estate, North County San Diego, licensed CA agent. The 500+ Airbnb launches belong to his business partner; never claim them as Justin's own. The brand blends STR and real estate authority with mindset, discipline and training, travel, and caring for others. Goal: 30,000 followers.
 
 Justin has ADHD. One short command should produce a finished, ready to review output. Fewer decisions, clear checklists.
 

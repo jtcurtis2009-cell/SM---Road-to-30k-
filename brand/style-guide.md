@@ -2,7 +2,7 @@
 
 ## The model: Bloom (Greg LaVecchia and Mari Llewellyn)
 Bloom grew from a founder's personal transformation post into a nine figure brand. What we copy:
-* **Founder story first.** The origin and transformation story is the anchor of trust. For Justin: 11 years, 500+ launches, mindset and discipline.
+* **Founder story first.** The origin and transformation story is the anchor of trust. For Justin: what he is learning in STR and real estate (including from his business partner, who has 500+ launches), plus mindset and discipline. Ask Justin for his own real numbers and stories.
 * **Routine and day in the life.** Real routines over polished ads. For Justin: launch days, property walkthroughs, training, Sunday planning.
 * **Plain, relatable language.** No hype, no clinical claims. Explain things like a friend would.
 * **Community in the loop.** Ask followers what to cover next and show their input on screen.
