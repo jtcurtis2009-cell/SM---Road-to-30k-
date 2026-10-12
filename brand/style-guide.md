@@ -44,6 +44,6 @@ What Justin likes: bubbly, vibrant, but clean.
 
 Options rendered in `brand/caption-style-options.jpg` (all free Google Fonts, files in `brand/fonts/`):
 * A: Gloock with DM Sans (closest match to the reference)
-* B: Fraunces Soft Black with DM Sans (the most bubbly)
+* B: Fraunces Soft Black with DM Sans (the most bubbly). Current default, used in `make_reel.py` as `style: pop`.
 * C: Bricolage Grotesque with Instrument Serif italic in a warm peach
 * D: Playfair Display Black with DM Sans and a rust period

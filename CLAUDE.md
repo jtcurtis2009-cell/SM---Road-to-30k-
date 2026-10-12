@@ -15,7 +15,8 @@ Justin has ADHD. One short command should produce a finished, ready to review ou
 * Captions: Hook on line one (question, contrarian take, or number), then Story, Insight, CTA.
 * In captions, never ask people to "reply yes" or "comment X". Ask a plain question.
 * Reels: on screen hook in the first 2 seconds, native captions.
-* Pillars (one per post): STR and RE Authority, Mindset, Discipline and Training, Life and Impact.
+* Pillars (one per post), from Justin's Growth Lab: Faith, Impact, Joy, Business (Business includes STR and real estate authority).
+* Reel text: bubbly but clean. Small DM Sans setup line over one huge Fraunces Soft word (`style: pop` in reel.json). See `brand/style-guide.md`.
 * Rotation buckets: Educate, Prove, Personal, Offer. Target 4 to 6 posts a week, 3+ Reels.
 * Nothing posts automatically. Status flow: idea, drafted, in review, approved, scheduled, posted.
 

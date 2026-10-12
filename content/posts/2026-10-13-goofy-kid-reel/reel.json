@@ -1,0 +1,64 @@
+{
+  "slug": "2026-10-13-goofy-kid-reel",
+  "handle": "@justinthymecurtis",
+  "source": "../../../raw/forest-walk.mp4",
+  "segments": [
+    {
+      "start": 4.9,
+      "end": 9.0,
+      "speed": 1.0
+    },
+    {
+      "start": 9.0,
+      "end": 12.0,
+      "speed": 2.0
+    },
+    {
+      "start": 12.0,
+      "end": 18.0,
+      "speed": 1.2
+    },
+    {
+      "start": 18.0,
+      "end": 24.8,
+      "speed": 1.0
+    }
+  ],
+  "overlays": [
+    {
+      "style": "pop",
+      "setup": "when did you stop being a",
+      "text": "goofy\nkid?",
+      "size": 260,
+      "start": 0.0,
+      "end": 4.0
+    },
+    {
+      "style": "pop",
+      "setup": "joy doesn't need an",
+      "text": "audience.",
+      "size": 210,
+      "start": 5.2,
+      "end": 10.4
+    },
+    {
+      "style": "pop",
+      "setup": "you were made to",
+      "text": "enjoy this.",
+      "size": 190,
+      "start": 10.8,
+      "end": 14.2
+    },
+    {
+      "style": "pop_end",
+      "setup": "follow the",
+      "text": "journey",
+      "accent": "FAITH  \u00b7  IMPACT  \u00b7  JOY  \u00b7  BUSINESS",
+      "size": 200,
+      "top": 640,
+      "start": 15.5,
+      "end": 17.4
+    }
+  ],
+  "cover_at": 1.5
+}

@@ -12,6 +12,7 @@ reel.json fields:
 Output: exports/<slug>/reel.mp4 (1080x1920, 30fps, no audio so trending audio
 can be added in Instagram) and cover.jpg
 """
+import base64
 import html
 import json
 import subprocess
@@ -23,6 +24,16 @@ from playwright.sync_api import sync_playwright
 ROOT = Path(__file__).resolve().parent.parent
 P = json.loads((ROOT / "brand" / "palette.json").read_text())
 W, H = 1080, 1920
+FONTS = ROOT / "brand" / "fonts"
+
+
+def _ff(name, file, extra=""):
+    b = base64.b64encode((FONTS / file).read_bytes()).decode()
+    return f"@font-face{{font-family:'{name}';src:url(data:font/ttf;base64,{b});{extra}}}"
+
+
+FONT_CSS = (_ff("Fraunces", "Fraunces[SOFT,WONK,opsz,wght].ttf", "font-weight:100 900;")
+            + _ff("DMSans", "DMSans[opsz,wght].ttf", "font-weight:100 1000;"))
 
 CSS = f"""
 * {{ margin:0; padding:0; box-sizing:border-box; }}
@@ -37,6 +48,13 @@ html, body {{ width:{W}px; height:{H}px; background:transparent; font-family:'In
 .end .k {{ font-weight:700; letter-spacing:10px; font-size:34px; color:{P['denim_light']}; }}
 .end h1 {{ font-family:'Inter Display'; font-weight:800; font-size:110px; letter-spacing:-4px; margin-top:18px;
            text-shadow:0 6px 30px rgba(0,0,0,.45); }}
+.pop {{ position:absolute; left:40px; right:40px; text-align:center; color:#fff; text-shadow:0 4px 26px rgba(0,0,0,.42); }}
+.pop .s {{ font-family:'DMSans'; font-weight:600; font-size:58px; letter-spacing:-.5px; }}
+.pop .b {{ font-family:'Fraunces'; font-weight:900; font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 144;
+          line-height:.86; letter-spacing:-8px; margin-top:8px; }}
+.pop .a {{ font-family:'DMSans'; font-weight:700; font-size:40px; letter-spacing:8px; margin-top:26px; color:{P['sand']}; }}
+.pop .h {{ display:inline-block; margin-top:30px; background:{P['rust']}; color:{P['sand']}; font-family:'DMSans'; font-weight:700;
+           font-size:40px; padding:14px 34px; border-radius:999px; text-shadow:none; }}
 .end .h {{ display:inline-block; margin-top:28px; background:{P['rust']}; color:{P['sand']}; font-weight:700; font-size:40px;
            padding:16px 34px; border-radius:999px; }}
 """
@@ -47,6 +65,16 @@ def esc(t):
 
 
 def overlay_html(o, handle):
+    if o.get("style") in ("pop", "pop_end"):
+        size = o.get("size", 250)
+        top = o.get("top", 380)
+        setup = f'<div class="s">{esc(o["setup"])}</div>' if o.get("setup") else ""
+        tail = ""
+        if o["style"] == "pop_end":
+            tail = (f'<div class="a">{esc(o.get("accent", ""))}</div>' if o.get("accent") else "") + f'<div class="h">{handle}</div>'
+        body = (f'<div class="pop" style="top:{top}px">{setup}'
+                f'<div class="b" style="font-size:{size}px">{esc(o["text"])}</div>{tail}</div>')
+        return f"<!doctype html><html><head><meta charset='utf-8'><style>{FONT_CSS}{CSS}</style></head><body>{body}</body></html>"
     if o.get("style") == "end":
         body = f"""<div class="shade"></div><div class="end"><div class="k">{esc(o.get('accent', 'ROAD TO 30K'))}</div>
         <h1>{esc(o['text'])}</h1><div class="h">{handle}</div></div>"""
