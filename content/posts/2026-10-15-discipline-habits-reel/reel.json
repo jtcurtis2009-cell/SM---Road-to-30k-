@@ -12,20 +12,20 @@
   "overlays": [
     {
       "style": "pop",
-      "setup": "build habits around",
-      "text": "discipline.",
-      "size": 200,
-      "top": 230,
+      "setup": "your future self is\ndepending on the",
+      "text": "habits",
+      "size": 230,
+      "top": 200,
       "start": 0.0,
-      "end": 3.6
+      "end": 3.8
     },
     {
       "style": "pop",
-      "setup": "it's the foundation of your",
-      "text": "future.",
-      "size": 240,
+      "setup": "you build",
+      "text": "today.",
+      "size": 250,
       "top": 230,
-      "start": 4.0,
+      "start": 4.2,
       "end": 8.0
     },
     {

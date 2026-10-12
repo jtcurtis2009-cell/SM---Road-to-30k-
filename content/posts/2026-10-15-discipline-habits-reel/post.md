@@ -11,18 +11,18 @@ status: in review
 # Heavy bag discipline (habits Reel)
 
 ## On screen text (5 font versions: U, V, G, N, T. See compare-fonts.mp4)
-1. build habits around / discipline. (0 to 3.6s, the hook)
-2. it's the foundation of your / future.
+1. your future self is depending on the / habits (0 to 3.8s, the hook)
+2. you build / today.
 3. don't let your future self / down.
 
 ## Hook options (line one of the caption)
-1. Building habits around discipline is the foundation of your future.
-2. Your future self is watching what you do today.
+1. Your future self is depending on the habits you build today.
+2. Building habits around discipline is the foundation of your future.
 3. Don't let your future self down.
 
 ## Instagram caption
 
-Building habits around discipline is the foundation of your future.
+Your future self is depending on the habits you build today.
 
 Motivation comes and goes. Habits stay. The reps you put in on the days you don't feel like it are the ones that build who you become.
 
