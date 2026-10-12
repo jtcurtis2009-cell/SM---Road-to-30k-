@@ -60,6 +60,16 @@ html, body {{ width:{W}px; height:{H}px; background:transparent; font-family:'In
 """
 
 
+# Color grades. Set "grade" in reel.json to a name below, or to a raw ffmpeg filter string.
+GRADES = {
+    "default": "eq=contrast=1.04:saturation=1.06",
+    # Dark indoor footage: lifts shadows and midtones, keeps blacks moody, light denoise for lifted grain.
+    "lift_dark": ("hqdn3d=2:1.5:4:3,curves=master='0/0 0.18/0.34 0.5/0.68 1/1',"
+                  "eq=gamma=1.1:contrast=1.04:saturation=1.1"),
+    "lift_light": "curves=master='0/0 0.25/0.34 0.6/0.7 1/1',eq=gamma=1.05:contrast=1.03:saturation=1.06",
+}
+
+
 def esc(t):
     return html.escape(t).replace("\n", "<br>")
 
@@ -119,8 +129,9 @@ def main(post_dir):
         sp = s.get("speed", 1.0)
         fc.append(f"[0:v]trim=start={s['start']}:end={s['end']},setpts=(PTS-STARTPTS)/{sp},"
                   f"scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},fps=30[v{i}]")
+    grade = GRADES.get(spec.get("grade", "default"), spec.get("grade"))
     fc.append("".join(f"[v{i}]" for i in range(len(segs))) + f"concat=n={len(segs)}:v=1:a=0,"
-              f"eq=contrast=1.04:saturation=1.06[base]")
+              f"{grade}[base]")
     last = "base"
     inputs = ["-i", str(src)]
     for i, (o, png) in enumerate(zip(spec["overlays"], pngs)):

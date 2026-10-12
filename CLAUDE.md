@@ -29,6 +29,8 @@ Read `brand/style-guide.md` before planning or writing. It holds the Bloom found
 * `content/posts/<date-slug>/` one folder per post: `post.md` (frontmatter, caption, LinkedIn version, notes) and `slides.json` for carousels
 * `scripts/render_carousel.py` renders `slides.json` to 1080x1350 PNGs in `exports/<slug>/`
 * `scripts/make_reel.py` cuts a branded Reel from raw footage using `reel.json` (segments, speed, text overlays) into `exports/<slug>/reel.mp4`
+* `make_reel.py` grades: set `"grade": "lift_dark"` in reel.json for dark indoor footage (lifts shadows, light denoise), `"lift_light"` for slightly dim footage, or pass a raw ffmpeg filter string
+* `scripts/caption_fonts.py <frame.jpg> "<setup>" "<big word>"` renders a lettered sheet of 10 caption font pairs over a real frame so Justin can pick one
 * `raw/` raw footage, never committed
 * `scripts/lint_copy.py` checks copy against brand rules
 * `exports/` finished images ready to upload
