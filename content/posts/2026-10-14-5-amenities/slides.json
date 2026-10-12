@@ -1,0 +1,50 @@
+{
+  "slug": "2026-10-14-5-amenities",
+  "handle": "@justinthymecurtis",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "STR INSIDER",
+      "title": "5 amenities that can add tens of thousands to your Airbnb.",
+      "accent": "Most hosts forget number 4.",
+      "footer": "Swipe"
+    },
+    {
+      "type": "lesson",
+      "number": "01",
+      "title": "Fitness amenities.",
+      "body": "Travelers don't stop training on vacation. A home gym, a rack of dumbbells or a bike gives fitness focused guests a reason to book you over the listing next door."
+    },
+    {
+      "type": "lesson",
+      "number": "02",
+      "title": "Sleep more, earn more.",
+      "body": "The more guests you can sleep, the higher your nightly rate. Bunk rooms, quality sleeper sofas and smart layouts turn a 6 guest home into an 8 or 10 guest stay."
+    },
+    {
+      "type": "lesson",
+      "number": "03",
+      "title": "Build an Instagram moment.",
+      "body": "A custom mural, a statement wall or a photo ready corner gets guests posting. Every post is free marketing that points straight back to your listing."
+    },
+    {
+      "type": "lesson",
+      "number": "04",
+      "title": "Lighting changes everything.",
+      "body": "It's the detail most hosts forget. Warm, layered light makes rooms feel bigger, photos look better, and guests feel at home the second they walk in."
+    },
+    {
+      "type": "lesson",
+      "number": "05",
+      "title": "Brand it like a hotel.",
+      "body": "Give your stay a name, a look and a feel. Branded welcome cards, linens and signage make guests remember you, and come back to book direct."
+    },
+    {
+      "type": "cta",
+      "kicker": "JUSTIN THYME",
+      "title": "Save this.",
+      "body": "Planning a launch or a refresh? Send this to a host who needs it, and follow for more short term rental strategy.",
+      "accent": "Which one are you adding first?"
+    }
+  ]
+}

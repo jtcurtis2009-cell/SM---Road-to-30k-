@@ -51,9 +51,9 @@ body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
 .foot { position:absolute; left:96px; right:96px; bottom:64px; display:flex; justify-content:space-between; align-items:center;
         font-size:24px; font-weight:600; letter-spacing:1px; opacity:.75; }
 .cover h1 { font-family:'Inter Display'; font-weight:800; font-size:118px; line-height:1.0; letter-spacing:-4px; margin-top:auto; }
-.cover .accent { font-family:'Inter Display'; font-weight:700; font-size:64px; line-height:1.1; color:%(rust)s; margin-top:40px; letter-spacing:-1.5px; }
+.cover .accent { font-family:'Inter Display'; font-weight:700; font-size:64px; line-height:1.1; color:%(rust_light)s; margin-top:40px; letter-spacing:-1.5px; }
 .cover .bar { width:140px; height:10px; background:%(denim)s; margin-top:56px; margin-bottom:40px; }
-.swipe { color:%(rust)s; opacity:1; }
+.swipe { color:%(rust_light)s; opacity:1; }
 .lesson .num { font-family:'Inter Display'; font-weight:800; font-size:260px; line-height:.85; color:%(rust)s; letter-spacing:-10px; margin-top:72px; }
 .lesson h2 { font-family:'Inter Display'; font-weight:800; font-size:78px; line-height:1.05; letter-spacing:-1.5px; margin-top:56px; }
 .lesson .rule { width:100px; height:8px; background:%(denim)s; margin:48px 0 40px; }
