@@ -1,0 +1,48 @@
+{
+  "slug": "2026-10-13-walk-away-reel",
+  "handle": "@justinthymecurtis",
+  "source": "../../../raw/forest-walk.mp4",
+  "segments": [
+    {
+      "start": 4.9,
+      "end": 9.5,
+      "speed": 1.0
+    },
+    {
+      "start": 9.5,
+      "end": 18.0,
+      "speed": 2.5
+    },
+    {
+      "start": 18.0,
+      "end": 24.8,
+      "speed": 1.0
+    }
+  ],
+  "overlays": [
+    {
+      "text": "Your best ideas\nwon't come from\nyour inbox.",
+      "start": 0.0,
+      "end": 4.4
+    },
+    {
+      "text": "Walk away\nfrom the screen.",
+      "start": 4.6,
+      "end": 7.9
+    },
+    {
+      "text": "Come back with\na clear head.",
+      "accent": "Then go build.",
+      "start": 8.1,
+      "end": 10.9
+    },
+    {
+      "text": "Follow the journey",
+      "accent": "ROAD TO 30K",
+      "style": "end",
+      "start": 12.6,
+      "end": 14.8
+    }
+  ],
+  "cover_at": 2.0
+}

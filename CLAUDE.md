@@ -26,6 +26,8 @@ Read `brand/style-guide.md` before planning or writing. It holds the Bloom found
 * `brand/` palette, monogram, voice files
 * `content/posts/<date-slug>/` one folder per post: `post.md` (frontmatter, caption, LinkedIn version, notes) and `slides.json` for carousels
 * `scripts/render_carousel.py` renders `slides.json` to 1080x1350 PNGs in `exports/<slug>/`
+* `scripts/make_reel.py` cuts a branded Reel from raw footage using `reel.json` (segments, speed, text overlays) into `exports/<slug>/reel.mp4`
+* `raw/` raw footage, never committed
 * `scripts/lint_copy.py` checks copy against brand rules
 * `exports/` finished images ready to upload
 

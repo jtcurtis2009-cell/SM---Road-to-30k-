@@ -40,6 +40,13 @@ def main(post_dir: str) -> int:
             for k, v in s.items():
                 if isinstance(v, str) and DASH.search(clean(v)):
                     problems.append(f"slide {i} {k}: dash found: {v}")
+    reel = post / "reel.json"
+    if reel.exists():
+        for i, o in enumerate(json.loads(reel.read_text())["overlays"], 1):
+            for k in ("text", "accent"):
+                v = o.get(k, "")
+                if DASH.search(clean(v)):
+                    problems.append(f"reel overlay {i} {k}: dash found: {v}")
     for p in problems:
         print("FAIL", p)
     if not problems:
