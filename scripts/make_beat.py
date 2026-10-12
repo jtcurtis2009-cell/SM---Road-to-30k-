@@ -1,10 +1,11 @@
 """Generate an original, royalty free backing beat for a Reel (no licensing issues).
 
 Usage:
-    python3 scripts/make_beat.py <out.wav> [--bpm 86] [--seconds 20] [--mood dark|bright]
+    python3 scripts/make_beat.py <out.wav> [--bpm 86] [--seconds 20] [--mood dark|bright|boombap]
 
 Dark: half time trap feel, deep 808, minor key pad, crisp hats. Good for training and discipline.
 Bright: upbeat four on the floor, major pad. Good for joy and travel.
+Boombap: 90s and early 2000s rap style, swung drums, Rhodes chords, vinyl crackle. Try 92 to 98 bpm.
 Put the output in raw/music/ and point reel.json "music.file" at it.
 """
 import argparse
@@ -62,7 +63,74 @@ def place(buf, sound, at):
         buf[i:j] += sound[: j - i]
 
 
+def rhodes(freqs, len_s, vol=0.12):
+    """Electric piano style chord: bell like harmonics, soft decay, gentle tremolo."""
+    n = int(len_s * SR); t = np.arange(n) / SR
+    s = np.zeros(n)
+    for f in freqs:
+        s += (np.sin(2 * np.pi * f * t) + 0.35 * np.sin(2 * np.pi * f * 2 * t) * np.exp(-t * 6)
+              + 0.12 * np.sin(2 * np.pi * f * 3.01 * t) * np.exp(-t * 9))
+    trem = 1 + 0.12 * np.sin(2 * np.pi * 4.5 * t)
+    return s / len(freqs) * env(n, 0.004, len_s * 0.6) * trem * vol
+
+
+def bb_kick():
+    n = int(0.45 * SR); t = np.arange(n) / SR
+    f = 50 + 140 * np.exp(-t * 35)
+    body = np.sin(2 * np.pi * np.cumsum(f) / SR) * env(n, 0.001, 0.18)
+    click = np.random.randn(n) * env(n, 0.0003, 0.004) * 0.4
+    return np.tanh((body + click) * 2.2) * 0.95
+
+
+def bb_snare():
+    n = int(0.32 * SR); t = np.arange(n) / SR
+    noise = np.random.randn(n)
+    noise = noise - np.convolve(noise, np.ones(6) / 6, "same")
+    body = np.sin(2 * np.pi * 185 * t) * env(n, 0.001, 0.06)
+    return np.tanh((noise * env(n, 0.001, 0.12) * 0.7 + body * 0.6) * 1.8) * 0.75
+
+
+def crackle(seconds):
+    n = int(seconds * SR)
+    hiss = np.convolve(np.random.randn(n), np.ones(30) / 30, "same") * 0.012
+    pops = (np.random.rand(n) > 0.99965) * np.random.randn(n) * 0.25
+    return hiss + np.convolve(pops, np.exp(-np.arange(60) / 8), "same")
+
+
+def build_boombap(bpm, seconds):
+    """90s / early 2000s boom bap: swung drums, dusty Rhodes chords, round bass, vinyl crackle."""
+    np.random.seed(11)
+    beat = 60 / bpm; step = beat / 4; bar = beat * 4; swing = step * 0.16
+    buf = np.zeros(int(seconds * SR) + SR)
+    # Am9, Dm9, Fmaj7, E7#9  (classic minor boom bap loop)
+    chords = [[220, 261.6, 329.6, 392, 493.9], [146.8, 174.6, 220, 261.6, 329.6],
+              [174.6, 220, 261.6, 329.6], [164.8, 207.7, 293.7, 392]]
+    roots = [55, 73.4, 43.65, 41.2]
+    kick_steps = [0, 7, 10]; snare_steps = [4, 12]
+    for b in range(int(seconds / bar) + 1):
+        t0 = b * bar
+        ch = chords[b % 4]
+        place(buf, rhodes(ch, beat * 1.6), t0)
+        place(buf, rhodes(ch, beat * 1.2, 0.08), t0 + 6 * step + swing)
+        for k in kick_steps:
+            place(buf, bb_kick() * (1 if k == 0 else 0.85), t0 + k * step + (swing if k % 2 else 0))
+            place(buf, eight08(roots[b % 4] * (1 if k != 10 else 1.5), step * 3) * 0.9, t0 + k * step + (swing if k % 2 else 0))
+        for sn in snare_steps:
+            place(buf, bb_snare(), t0 + sn * step)
+        place(buf, bb_snare() * 0.18, t0 + 15 * step + swing)  # ghost note
+        for h in range(16):
+            vel = 1.0 if h % 4 == 0 else (0.75 if h % 2 == 0 else 0.45)
+            if h % 2 == 1 and np.random.rand() < 0.4:
+                continue
+            place(buf, hat(open_=(h == 14)) * vel * 1.1, t0 + h * step + (swing if h % 2 else 0))
+    buf = buf[: int(seconds * SR)] + crackle(seconds)
+    buf = np.tanh(buf * 1.15)
+    return buf / (np.max(np.abs(buf)) + 1e-9) * 0.89
+
+
 def build(bpm, seconds, mood):
+    if mood == "boombap":
+        return build_boombap(bpm, seconds)
     np.random.seed(7)
     beat = 60 / bpm
     buf = np.zeros(int(seconds * SR) + SR)

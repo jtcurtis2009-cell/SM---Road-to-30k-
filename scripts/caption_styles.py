@@ -84,7 +84,7 @@ STYLES = {
           "font-family:InstrumentRegular;font-size:1.55em;letter-spacing:-.01em;color:#EDE7DD",
           "font-family:InstrumentItalic;letter-spacing:-.02em;color:#EDE7DD", 1.1),
     "V": ("Montserrat ExtraBold + Caveat handwritten word in light oak",
-          "font-family:Montserrat;font-weight:800;font-size:1.3em;letter-spacing:-.02em",
+          "font-family:Montserrat;font-weight:800;font-size:1.12em;letter-spacing:-.02em",
           "font-family:Caveat;font-weight:700;letter-spacing:-.01em;color:#C8A982", 1.1),
 }
 

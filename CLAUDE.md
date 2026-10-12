@@ -34,7 +34,7 @@ Read `brand/style-guide.md` before planning or writing. It holds the Bloom found
 * `make_reel.py` grades: set `"grade": "lift_dark"` in reel.json for dark indoor footage (lifts shadows, light denoise), `"lift_light"` for slightly dim footage, or pass a raw ffmpeg filter string
 * `scripts/caption_fonts.py <frame.jpg> "<setup>" "<big word>" [out.jpg] [letters]` renders a lettered sheet of caption styles (A to T) over a real frame so Justin can pick one
 * Music: add `"music": {"file": "../../../raw/music/track.mp3", "start": 0, "volume": 1.0}` and optionally `"original_audio": 0.3` (keeps the clip's own sound under the music) to reel.json. Output is loudness normalized, and `reel-silent.mp4` is saved too. Only use tracks Justin has rights to (royalty free or licensed); for trending songs, post `reel-silent.mp4` and add the audio inside Instagram so the Reel links to the audio page.
-* `scripts/make_beat.py raw/music/<name>.wav --bpm 86 --seconds 20 --mood dark|bright` generates an original, royalty free beat Justin fully owns. Use it when no licensed track is supplied.
+* `scripts/make_beat.py raw/music/<name>.wav --bpm 86 --seconds 20 --mood dark|bright|boombap` generates an original, royalty free beat Justin fully owns. Use it when no licensed track is supplied. Never make AI soundalikes of real songs; they still copy the song. Original beats in a genre style (90s boom bap etc.) are fine.
 * `raw/` raw footage, never committed
 * `scripts/lint_copy.py` checks copy against brand rules
 * `exports/` finished images ready to upload
