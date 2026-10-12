@@ -27,7 +27,7 @@ Eleven years and over 500 launches later, the hosts who win are not the ones wit
 
 That last one goes way past real estate. Systems are how I train, how I run my week, and how I'm building this page.
 
-This is day one of the Road to 30K. I'm sharing everything I've learned about STRs, mindset and discipline, out loud.
+Starting today, I'm sharing everything I've learned about STRs, mindset and discipline, out loud.
 
 Which lesson hit hardest for you? Tell me in the comments 👇
 

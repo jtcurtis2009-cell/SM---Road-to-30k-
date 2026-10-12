@@ -1,4 +1,4 @@
-# Road to 30K
+# Justin Thyme Social System
 
 Content system for Justin Thyme / STR Insider (@justinthymecurtis).
 

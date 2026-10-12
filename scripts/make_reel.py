@@ -76,7 +76,7 @@ def overlay_html(o, handle):
                 f'<div class="b" style="font-size:{size}px">{esc(o["text"])}</div>{tail}</div>')
         return f"<!doctype html><html><head><meta charset='utf-8'><style>{FONT_CSS}{CSS}</style></head><body>{body}</body></html>"
     if o.get("style") == "end":
-        body = f"""<div class="shade"></div><div class="end"><div class="k">{esc(o.get('accent', 'ROAD TO 30K'))}</div>
+        body = f"""<div class="shade"></div><div class="end"><div class="k">{esc(o.get('accent', 'JUSTIN THYME'))}</div>
         <h1>{esc(o['text'])}</h1><div class="h">{handle}</div></div>"""
     else:
         acc = f"<p>{esc(o['accent'])}</p>" if o.get("accent") else ""

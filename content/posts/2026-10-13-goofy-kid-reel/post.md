@@ -33,7 +33,7 @@ I believe we were made to enjoy this life, not just get through it. The business
 
 When's the last time you did something just because it was fun? 👇
 
-#joy #faith #childlikejoy #mindset #entrepreneurlife #gratitude #liveintentionally #roadto30k
+#joy #faith #childlikejoy #mindset #entrepreneurlife #gratitude #liveintentionally
 
 ## Audio
 Exported with no sound. Add an upbeat, playful trending audio in Instagram or Edits so the dancing lands on the beat. The dance section starts around 5 seconds in.

@@ -1,15 +1,22 @@
 {
-  "_note": "Starter palette for Justin Thyme / STR Insider. Pending Justin's approval.",
-  "charcoal": "#2B2926",
-  "charcoal_soft": "#3A3733",
-  "denim": "#4A6B8A",
-  "denim_light": "#8FA9C2",
-  "rust": "#B5562D",
-  "sand": "#F2ECE3",
-  "stone": "#D9D0C3",
-  "fonts": {
-    "headline": "Inter Display, 800",
-    "body": "Inter, 400 to 600"
+  "_note": "Official palette: dark and oak, pulled from Justin's luxury living room reference. Approved Oct 2026. Key names are kept for script compatibility: charcoal = dark backgrounds, rust = cognac accent, denim = oak, sand = bone.",
+  "ink": "#1A1D22",
+  "charcoal": "#2D2C29",
+  "charcoal_soft": "#3E3B36",
+  "rust": "#8A5A3B",
+  "rust_light": "#C8A982",
+  "denim": "#A8835F",
+  "denim_light": "#C8A982",
+  "sand": "#EDE7DD",
+  "stone": "#D8CFC2",
+  "olive": "#7D8467",
+  "brass": "#B08D57",
+  "names": {
+    "ink": "Ink", "charcoal": "Charcoal", "rust": "Cognac", "denim": "Oak",
+    "rust_light": "Light oak", "sand": "Bone", "olive": "Olive", "brass": "Brass"
   },
-  "rust_light": "#D9824F"
+  "fonts": {
+    "headline": "Inter Display 800 (carousels), Fraunces Soft (Reel hooks)",
+    "body": "Inter and DM Sans"
+  }
 }

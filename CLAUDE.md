@@ -1,4 +1,4 @@
-# Road to 30K: Justin Thyme / STR Insider
+# Justin Thyme / STR Insider: Social Media System
 
 Personal brand social media system for Justin Curtis (@justinthymecurtis). This is NOT NOVIQ. Never use NOVIQ branding, colors or claims here.
 
@@ -8,7 +8,7 @@ Justin: 11+ years in short term rentals, 500+ Airbnb launches, North County San 
 Justin has ADHD. One short command should produce a finished, ready to review output. Fewer decisions, clear checklists.
 
 ## Brand rules
-* Palette and fonts live in `brand/palette.json` (charcoal, denim blue, rust, sand). Fonts: Inter Display 800 for headlines, Inter for body.
+* Palette and fonts live in `brand/palette.json` (dark and oak: ink, charcoal, cognac, oak, light oak, bone, plus olive and brass). Fonts: Inter Display 800 for headlines, Inter for body.
 * Monogram: `brand/jt-monogram.svg`.
 * Voice: human, punchy, short sentences, conversational, peer to peer.
 * NEVER use hyphens or em dashes in copy. Use commas or full sentences. Run `python3 scripts/lint_copy.py <post folder>` before marking a post ready.
@@ -19,6 +19,7 @@ Justin has ADHD. One short command should produce a finished, ready to review ou
 * Reel text: bubbly but clean. Small DM Sans setup line over one huge Fraunces Soft word (`style: pop` in reel.json). See `brand/style-guide.md`.
 * Rotation buckets: Educate, Prove, Personal, Offer. Target 4 to 6 posts a week, 3+ Reels.
 * Nothing posts automatically. Status flow: idea, drafted, in review, approved, scheduled, posted.
+* Never use "Road to 30K" as a brand, series, hashtag or kicker. The repo name is just a folder name.
 
 ## Strategy
 Read `brand/style-guide.md` before planning or writing. It holds the Bloom founder story model, the data behind the format mix, and the video workflow. Never invent personal stories for Justin; ask him for the real one.
