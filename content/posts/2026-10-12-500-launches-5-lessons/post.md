@@ -11,13 +11,13 @@ status: in review
 # 500+ Airbnb launches, 5 lessons
 
 ## Hook options (line one of the caption)
-1. 500+ Airbnb launches taught me 5 things nobody tells new hosts.
-2. Most hosts learn these 5 lessons the expensive way.
-3. 11 years. 500+ launches. Here's what actually moves the needle.
+1. 11 years ago I launched my first Airbnb. Here's what I'd tell myself on day one.
+2. 500+ Airbnb launches taught me 5 things nobody tells new hosts.
+3. Most hosts learn these 5 lessons the expensive way.
 
 ## Instagram caption
 
-500+ Airbnb launches taught me 5 things nobody tells new hosts.
+11 years ago I launched my first Airbnb. Here's what I'd tell myself on day one.
 
 When I launched my first short term rental, I thought the house was the product. Nice furniture, good location, done.
 
@@ -50,6 +50,7 @@ Number 5 is the one I come back to in everything, from launches to training to h
 Which one would you add to the list?
 
 ## Shot list / notes
+* Drop a photo of Justin named cover.jpg (vertical, face in the top half) and a headshot named headshot.jpg into this folder, then render again.
 * Post as a 7 slide carousel. Slides are in exports/2026-10-12-500-launches-5-lessons/.
 * Best window: check Metricool best time to post before scheduling.
 * Pin this post to the profile as the intro.

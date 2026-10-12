@@ -3,10 +3,11 @@
   "handle": "@justinthymecurtis",
   "slides": [
     {
-      "type": "cover",
-      "kicker": "STR INSIDER",
-      "title": "500+ Airbnb launches.\n11 years.",
-      "accent": "5 lessons nobody told me.",
+      "type": "story_cover",
+      "photo": "cover.jpg",
+      "kicker": "ROAD TO 30K",
+      "title": "11 years ago I launched my first Airbnb.",
+      "accent": "500+ launches later, here's what I'd tell myself on day one.",
       "footer": "Swipe"
     },
     {
@@ -37,10 +38,12 @@
       "type": "lesson",
       "number": "05",
       "title": "Systems beat hustle.",
-      "body": "Hustle got me my first launches. Systems got me to 500. Same lesson I live by in the gym and in life."
+      "body": "Hustle got me my first launches. Systems got me to 500.",
+      "note": "Same rule I live by in the gym. Show up, follow the system, repeat."
     },
     {
       "type": "cta",
+      "photo": "headshot.jpg",
       "kicker": "ROAD TO 30K",
       "title": "I'm Justin.",
       "body": "I'm sharing everything I've learned about short term rentals, mindset and discipline, out loud, one post at a time.",

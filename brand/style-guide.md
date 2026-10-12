@@ -1,0 +1,36 @@
+# Style Guide and Data Playbook
+
+## The model: Bloom (Greg LaVecchia and Mari Llewellyn)
+Bloom grew from a founder's personal transformation post into a nine figure brand. What we copy:
+* **Founder story first.** The origin and transformation story is the anchor of trust. For Justin: 11 years, 500+ launches, mindset and discipline.
+* **Routine and day in the life.** Real routines over polished ads. For Justin: launch days, property walkthroughs, training, Sunday planning.
+* **Plain, relatable language.** No hype, no clinical claims. Explain things like a friend would.
+* **Community in the loop.** Ask followers what to cover next and show their input on screen.
+* **Creators and collabs.** Bloom's creator videos averaged roughly 8x the views of its own brand videos. For Justin: collab posts with hosts, investors, trainers, and local San Diego creators.
+* What we do NOT copy: Bloom's pastel palette. Justin's look stays neutral, masculine and warm.
+
+## Data that drives the plan
+* Carousels are the top engagement format on Instagram (about 0.50% vs 0.48% for Reels and 0.33% for images, Socialinsider Q2 2026).
+* For accounts with 1K to 5K followers, carousels average 993 views vs 580 for Reels and 417 for images (Socialinsider).
+* Reels drive the most comments at every account size (Socialinsider). Use Reels for conversation and reach.
+* Carousels earn about 9x more saves than single images, and Reel watch time more than doubled in a year (Metricool, 24M posts studied).
+* Single images are falling every year. Avoid them except for big announcements.
+* 70% of consumers feel more connected to a brand whose CEO is active on social (Sprout Social, via Influencity). Justin's face goes on covers.
+
+## Weekly mix (4 to 6 posts)
+* 2 to 3 carousels: lessons, breakdowns, story posts. Goal: saves and shares.
+* 2 to 3 Reels: day in the life, quick tips, behind the scenes. Goal: comments and reach.
+* Daily Stories: polls and questions, so followers shape the content.
+* Review every Friday in Metricool. Keep the format that earned the most saves and shares, cut what didn't.
+
+## Visual rules
+* Covers: Justin's photo full bleed, dark fade at the bottom, story headline in Inter Display 800.
+* Lesson slides: sand background, big rust number, one idea per slide, an optional italic personal note.
+* Close every carousel with Justin's face and one clear ask (follow, save, or share).
+* Reels: hook text on screen in the first 2 seconds, burned in captions, brand colors on text.
+
+## Video workflow
+* **Edit and trends:** Instagram Edits (free, from Instagram). Use its Inspiration tab for trending audio and its Insights tab for Reel stats.
+* **Trend proof:** CapCut templates show usage counts, which is a quick signal of what's trending. TikTok Creative Center is free and shows rising hashtags and songs with popularity over time.
+* **Claude's part:** Justin uploads raw clips. Claude cuts, crops to 9:16, adds burned in captions and branded hook text with ffmpeg, then saves to `exports/`.
+* **Scheduling:** Metricool, posts for review only.

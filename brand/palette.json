@@ -10,5 +10,6 @@
   "fonts": {
     "headline": "Inter Display, 800",
     "body": "Inter, 400 to 600"
-  }
+  },
+  "rust_light": "#D9824F"
 }

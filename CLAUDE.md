@@ -19,6 +19,9 @@ Justin has ADHD. One short command should produce a finished, ready to review ou
 * Rotation buckets: Educate, Prove, Personal, Offer. Target 4 to 6 posts a week, 3+ Reels.
 * Nothing posts automatically. Status flow: idea, drafted, in review, approved, scheduled, posted.
 
+## Strategy
+Read `brand/style-guide.md` before planning or writing. It holds the Bloom founder story model, the data behind the format mix, and the video workflow. Never invent personal stories for Justin; ask him for the real one.
+
 ## Folders
 * `brand/` palette, monogram, voice files
 * `content/posts/<date-slug>/` one folder per post: `post.md` (frontmatter, caption, LinkedIn version, notes) and `slides.json` for carousels
