@@ -1,0 +1,423 @@
+{
+  "meta": {
+    "compiled": "2026-10-18",
+    "refresh_by": "2026-11-15",
+    "brand": "Justin Thyme / STR Insider",
+    "pillars": [
+      "Faith",
+      "Impact",
+      "Joy",
+      "Business"
+    ],
+    "platforms": [
+      "instagram",
+      "linkedin"
+    ],
+    "rules": [
+      "Paraphrase sources, never copy text",
+      "No hyphens in copy",
+      "CTA is a plain question or share prompt",
+      "Skip items with status verify until checked"
+    ],
+    "companion_file": "content_trends_2026_10.md"
+  },
+  "trends": [
+    {
+      "id": "A1",
+      "track": "str",
+      "title": "Airbnb 15.5% host only fee now mandatory",
+      "pillar": [
+        "Business"
+      ],
+      "status": "confirmed",
+      "key_stats": {
+        "fee_pct": 15.5,
+        "non_eu_switch": "2026-09-15",
+        "eu_switch": "2026-10-13",
+        "payout_on_100_before": 97,
+        "payout_on_100_after": 84.5,
+        "markup_to_stay_whole_pct": 18.34
+      },
+      "hooks": [
+        "Airbnb changed your payout last month. Did you notice?",
+        "If you added 15.5% to your price, you still lost money. Here's the math.",
+        "Your listing price stayed the same. Your paycheck didn't."
+      ],
+      "formats": [
+        "data_carousel",
+        "reel_walkthrough"
+      ],
+      "sources": [
+        "https://www.hostaway.com/glossary/host-only-fee/",
+        "https://www.rentalscaleup.com/airbnb-host-fees/",
+        "https://www.hostfully.com/blog/airbnb-host-fees/"
+      ]
+    },
+    {
+      "id": "A2",
+      "track": "str",
+      "title": "Slow supply growth gives existing hosts pricing power",
+      "pillar": [
+        "Business"
+      ],
+      "status": "confirmed",
+      "key_stats": {
+        "us_occupancy_2026_pct": 57.4,
+        "demand_growth_pct": 2.7,
+        "supply_growth_pct": 2.7,
+        "revpar_growth_pct": 2.9
+      },
+      "hooks": [
+        "The STR market isn't saturated. Your listing might be.",
+        "2026 is a better year to own an Airbnb than to buy one. Here's why."
+      ],
+      "formats": [
+        "data_carousel",
+        "talking_head"
+      ],
+      "sources": [
+        "https://www.airdna.co/blog/u.s.-mid-year-outlook-report-2026",
+        "https://shorttermrentalz.com/news/slower-str-supply-growth-airdna/"
+      ]
+    },
+    {
+      "id": "A3",
+      "track": "str",
+      "title": "Booking windows keep shrinking",
+      "pillar": [
+        "Business"
+      ],
+      "status": "confirmed",
+      "key_stats": {
+        "jan_window_days_2022": 19,
+        "jan_window_days_2026": 15,
+        "jul_window_days_2022": 34,
+        "jul_window_days_2026": 29
+      },
+      "hooks": [
+        "Your calendar looks empty because guests book later now. Don't panic discount.",
+        "Guests are booking 4 days later than they did in 2022. Here's what that means for your pricing."
+      ],
+      "formats": [
+        "linkedin_text_post",
+        "data_carousel"
+      ],
+      "sources": [
+        "https://hello.pricelabs.co/blog/short-term-rental-trends/"
+      ]
+    },
+    {
+      "id": "A4",
+      "track": "str",
+      "title": "Refinement era: dynamic pricing and multichannel are table stakes",
+      "pillar": [
+        "Business"
+      ],
+      "status": "confirmed",
+      "key_stats": {
+        "properties_analyzed": 362000,
+        "luxury_revenue_growth_proj_pct": 40
+      },
+      "hooks": [
+        "Static pricing in 2026 is like using a flip phone to run a business.",
+        "Airbnb only? That's one point of failure."
+      ],
+      "formats": [
+        "data_carousel",
+        "talking_head"
+      ],
+      "sources": [
+        "https://shorttermrentalz.com/news/rentals-united-pricelabs-data/",
+        "https://www.traveldailynews.com/statistics-trends/rentals-united-and-pricelabs-outline-refinement-era-for-short-term-rentals/"
+      ]
+    },
+    {
+      "id": "A5",
+      "track": "str",
+      "title": "Airbnb AI review highlights and listing comparisons",
+      "pillar": [
+        "Business"
+      ],
+      "status": "confirmed",
+      "key_stats": {},
+      "hooks": [
+        "Airbnb's AI reads your reviews before guests do.",
+        "One recurring complaint in your reviews is now a headline."
+      ],
+      "formats": [
+        "linkedin_text_post",
+        "reel_walkthrough"
+      ],
+      "sources": [
+        "https://www.hostaway.com/blog/airbnb-2026-fall-update-what-it-means-for-hosts/",
+        "https://hostex.io/blog/?p=4248"
+      ]
+    },
+    {
+      "id": "A6",
+      "track": "str",
+      "title": "Investors fleeing STRs is the opportunity",
+      "pillar": [
+        "Business"
+      ],
+      "status": "confirmed",
+      "key_stats": {
+        "bp_survey_respondents": 600,
+        "share_favoring_ltr": ">50%"
+      },
+      "hooks": [
+        "Half of investors just gave up on Airbnb. Good.",
+        "Everyone's running to long term rentals. Here's why I'm not."
+      ],
+      "formats": [
+        "talking_head",
+        "trial_reel"
+      ],
+      "sources": [
+        "https://www.biggerpockets.com/blog/bp-pulse-2026-short-term-rental-outlook",
+        "https://shorttermrentalz.com/news/airdna-outlook-report-investment/"
+      ]
+    },
+    {
+      "id": "A7",
+      "track": "str",
+      "title": "Mid term rentals keep growing",
+      "pillar": [
+        "Business"
+      ],
+      "status": "confirmed",
+      "key_stats": {
+        "monthly_nights_2019_m": 20,
+        "monthly_nights_2025_m": 46,
+        "share_of_us_rental_demand_pct": 19
+      },
+      "hooks": [
+        "1 in 5 rental nights in the US is now a 28+ night stay.",
+        "Your slow season has a fix, and it isn't a discount."
+      ],
+      "formats": [
+        "data_carousel"
+      ],
+      "sources": [
+        "https://www.biggerpockets.com/blog/mid-term-rentals"
+      ]
+    },
+    {
+      "id": "A8",
+      "track": "str",
+      "title": "San Diego local angle",
+      "pillar": [
+        "Business",
+        "Impact"
+      ],
+      "status": "confirmed",
+      "key_stats": {
+        "blocked_tax_max_usd": 8000,
+        "rules_committee_vote": "3 to 2 (Jan 2026)",
+        "enforcement_penalty_usd": 1250000,
+        "sd_active_listings_jun_2026": 15964,
+        "sd_supply_change_yoy_pct": -7.8,
+        "sd_occupancy_pct": 61
+      },
+      "hooks": [
+        "San Diego has 8% fewer Airbnbs than last year. Here's who wins.",
+        "A $1.25M lesson in running your STR legally."
+      ],
+      "formats": [
+        "pov_caption_reel",
+        "data_carousel"
+      ],
+      "sources": [
+        "https://www.ownerrez.com/blog/san-diego-blocks-str-tax-airdna-investment-insights-and-evolving-regulations",
+        "https://www.sandiego.gov/sites/default/files/2026-06/nr260609a.pdf",
+        "https://www.airdna.co/vacation-rental-data/app/us/california/san-diego/supply"
+      ]
+    },
+    {
+      "id": "A9",
+      "track": "str",
+      "title": "News peg: Airbnb Q3 2026 earnings",
+      "pillar": [
+        "Business"
+      ],
+      "status": "scheduled",
+      "key_stats": {
+        "earnings_date": "2026-11-05",
+        "q2_revenue_usd_b": 3.6,
+        "q2_growth_pct": 17
+      },
+      "hooks": [
+        "Airbnb just reported earnings. Here's what it means for your payout."
+      ],
+      "formats": [
+        "linkedin_text_post",
+        "weekly_broadcast"
+      ],
+      "post_on": "2026-11-06",
+      "sources": [
+        "https://finviz.com/news/397976/airbnb-to-announce-third-quarter-2026-results",
+        "https://www.rentalscaleup.com/airbnb-q2-2026-earnings/"
+      ]
+    },
+    {
+      "id": "B1",
+      "track": "platform",
+      "platform": "instagram",
+      "title": "Shares and originality beat likes",
+      "status": "confirmed",
+      "rule": "Design every post to be sent to someone; never repost others' content; originality applies to carousels and photos since 2026-04-30",
+      "key_stats": {
+        "dm_share_weight_vs_like": "3x to 5x (compiled from Mosseri statements)"
+      },
+      "sources": [
+        "https://dataslayer.ai/blog/instagram-algorithm-2025-complete-guide-for-marketers",
+        "https://www.socialpilot.co/it/instagram-marketing/how-instagram-algorithm-works"
+      ]
+    },
+    {
+      "id": "B2",
+      "track": "platform",
+      "platform": "instagram",
+      "title": "Reels for discovery, carousels for trust, Trial Reels for testing",
+      "status": "confirmed",
+      "rule": "Test hooks with Trial Reels, pair each Reel topic with a carousel deep dive",
+      "sources": [
+        "https://blog.mean.ceo/?p=10941",
+        "https://posteverywhere.ai/blog/instagram-trends-2026",
+        "https://metricool.com/instagram-reels-guide/"
+      ]
+    },
+    {
+      "id": "B3",
+      "track": "platform",
+      "platform": "instagram",
+      "title": "Broadcast Channels and Close Friends as loyalty signals",
+      "status": "verify",
+      "rule": "Weekly short broadcast with a market stat or behind the scenes note",
+      "sources": [
+        "https://heropost.io/instagram-algorithm-changes-2026/"
+      ]
+    },
+    {
+      "id": "B4",
+      "track": "platform",
+      "platform": "linkedin",
+      "title": "Niche expertise, comments, no generic AI posts",
+      "status": "confirmed",
+      "rule": "Two lanes only (STR data, founder growth); link in first comment; rewrite every AI draft with a real story or number",
+      "sources": [
+        "https://blog.hootsuite.com/linkedin-algorithm/",
+        "https://metricool.com/linkedin-algorithm/",
+        "https://rivereditor.com/blogs/2026-linkedin-algorithm-what-works-300-posts-tested",
+        "https://vulse.co/blog/how-linkedin-2026-algorithm-works-and-what-it-means-for-your-content-strategy"
+      ]
+    },
+    {
+      "id": "B5",
+      "track": "brand",
+      "title": "Founder brands beat company pages",
+      "pillar": [
+        "Impact",
+        "Business"
+      ],
+      "status": "confirmed",
+      "rule": "Justin leads; NOVIQ is the proof, not the pitch; camera roll authenticity over polish",
+      "sources": [
+        "https://kiraklaas.substack.com/p/my-in-and-out-list-for-2026-tech",
+        "https://blog.mean.ceo/?p=5044",
+        "https://mrkt-hey-rhody-marketing-roundup.beehiiv.com/p/what-smart-brands-are-doing-for-2026"
+      ]
+    },
+    {
+      "id": "B6",
+      "track": "brand",
+      "title": "Personal story to business lesson, under 90 seconds",
+      "pillar": [
+        "Faith",
+        "Joy",
+        "Impact"
+      ],
+      "status": "confirmed",
+      "rule": "Open on a real personal moment, land one business lesson",
+      "sources": [
+        "https://www.linkedfusion.io/blogs/linkedin-content-trends/"
+      ]
+    },
+    {
+      "id": "B7",
+      "track": "brand",
+      "title": "Style model: Greg LaVecchia",
+      "pillar": [
+        "Business",
+        "Impact"
+      ],
+      "status": "confirmed",
+      "rule": "Arc: humble origin, obsessive standard, data proof",
+      "sources": [
+        "https://magica.com/youtube-summarizer/how-greg-lavecchia-built-bloom-into-a-billion-dollar-brand-by-embracing-obsession-innovation-and-a-ZYlCKBv670c"
+      ]
+    }
+  ],
+  "watchlist": [
+    {
+      "name": "AirDNA blog",
+      "type": "data",
+      "url": "https://www.airdna.co/blog"
+    },
+    {
+      "name": "PriceLabs blog",
+      "type": "data",
+      "url": "https://hello.pricelabs.co/blog/"
+    },
+    {
+      "name": "Rental Scale Up",
+      "type": "news",
+      "url": "https://www.rentalscaleup.com"
+    },
+    {
+      "name": "Short Term Rentalz",
+      "type": "news",
+      "url": "https://shorttermrentalz.com"
+    },
+    {
+      "name": "OwnerRez Industry News",
+      "type": "news",
+      "url": "https://www.ownerrez.com/blog"
+    },
+    {
+      "name": "Hostaway blog",
+      "type": "news",
+      "url": "https://www.hostaway.com/blog/"
+    },
+    {
+      "name": "BiggerPockets blog",
+      "type": "creator",
+      "url": "https://www.biggerpockets.com/blog"
+    },
+    {
+      "name": "Boostly (Mark Simpson)",
+      "type": "creator",
+      "url": "https://boostly.co.uk"
+    },
+    {
+      "name": "Robuilt (Rob Abasolo)",
+      "type": "creator",
+      "url": null
+    },
+    {
+      "name": "The Short Term Show (Avery Carl)",
+      "type": "creator",
+      "url": null
+    },
+    {
+      "name": "Get Paid for Your Pad (Jasper Ribbers)",
+      "type": "creator",
+      "url": null
+    },
+    {
+      "name": "Adam Mosseri @mosseri",
+      "type": "platform",
+      "url": "https://www.instagram.com/mosseri/"
+    }
+  ]
+}
