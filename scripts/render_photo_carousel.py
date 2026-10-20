@@ -91,6 +91,23 @@ REF = "Ecclesiastes 3:1"
 cafe = fit(CAFE, 0.5)
 sunset = fit(SUNSET, 0.62)
 
+
+def lift(img, shadows=0.55, gamma=0.78, sat=1.08):
+    """Brighten shadows and midtones while keeping the bright sky from blowing out."""
+    import numpy as np
+    a = np.asarray(img).astype(np.float32) / 255.0
+    lum = 0.299 * a[..., 0] + 0.587 * a[..., 1] + 0.114 * a[..., 2]
+    target = lum ** gamma
+    target = target + shadows * (1 - target) * (1 - lum) ** 3 * 0.35
+    ratio = np.where(lum > 1e-4, target / np.maximum(lum, 1e-4), 1.0)[..., None]
+    out = np.clip(a * ratio, 0, 1)
+    g = out.mean(axis=2, keepdims=True)
+    out = np.clip(g + (out - g) * sat, 0, 1)
+    return Image.fromarray((out * 255).astype("uint8"))
+
+
+sunset = lift(sunset, shadows=0.35, gamma=0.86, sat=0.96)
+
 for name, st in STYLES.items():
     C = (lambda s: s.upper()) if st["caps"] else (lambda s: s)
     fs = font(*st["setup"])
@@ -119,16 +136,19 @@ for name, st in STYLES.items():
     s2.save(f"{OUT}/{name}/slide-2.jpg", quality=93)
 
     # Slide 3, scripture: blurred, darkened sunset sky, bone text
-    bg = sunset.filter(ImageFilter.GaussianBlur(28))
+    # sky only: from the top of the photo down to just past the horizon, so the slide is a soft sunset gradient
+    raw = ImageOps.exif_transpose(Image.open(SUNSET)).convert("RGB")
+    sky = raw.crop((int(raw.width * 0.1), 0, int(raw.width * 0.9), int(raw.height * 0.45)))
+    bg = sky.resize((W, H), Image.LANCZOS).filter(ImageFilter.GaussianBlur(30))
     shade = Image.new("RGB", (W, H), INK)
-    bg = Image.blend(bg, shade, 0.55)
+    bg = Image.blend(bg, shade, 0.22)
     fv = font(*st["verse"])
     fr = font(*st["ref"])
     vl = [(C(t), fv, BONE, 0) for t in VERSE]
     vl[-1] = (vl[-1][0], fv, BONE, 30)
-    vl.append((C(REF) if st["caps"] else REF, fr, LOAK, 0))
+    vl.append((C(REF) if st["caps"] else REF, fr, BONE, 0))
     y0 = (H - block_height(vl)) // 2
-    s3 = draw_block(bg, vl, W // 2, y0, "center", (0, 0, 0, 90))
+    s3 = draw_block(bg, vl, W // 2, y0, "center", (10, 14, 24, 150), blur=14)
     d = ImageDraw.Draw(s3)
     d.line((W // 2 - 40, y0 - 60, W // 2 + 40, y0 - 60), fill=LOAK, width=3)
     s3.save(f"{OUT}/{name}/slide-3.jpg", quality=93)
