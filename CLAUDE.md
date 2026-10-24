@@ -30,6 +30,13 @@ Read `brand/style-guide.md` before planning or writing. It holds the Bloom found
 * `scripts/render_carousel.py` renders `slides.json` to 1080x1350 PNGs in `exports/<slug>/`
 * `scripts/make_reel.py` cuts a branded Reel from raw footage using `reel.json` (segments, speed, text overlays) into `exports/<slug>/reel.mp4`
 * `raw/` raw footage, never committed
+
+## Google Drive source folders (personal Drive, jtcurtis.2009@gmail.com)
+Parent: **Instagram Footage** https://drive.google.com/drive/folders/16HAhHcmIoRFeA1vQYalFzcKGw4Gi1nOu
+* **Instagram Footage, Personal** (folder id `1-x05TuD9ZyiyS6tfCVsWRmUT2h3lyeCx`): Justin's own raw clips and photos to edit into posts. Check here first for source footage.
+* **Instagram Reels Examples** (folder id `1clsI1P2WeGKg670bQr-S0lkKEljJX2pi`): reference Reels and screenshots showing the style, pacing and editing Justin wants to replicate. Study these before planning an edit.
+* Finished edits still go to the separate "Instagram Ready Posts" folder.
+* The Drive connector only downloads files under 10 MB. Larger videos must be uploaded straight into the chat; photos and small files can be pulled from Drive directly.
 * `scripts/lint_copy.py` checks copy against brand rules
 * `exports/` finished images ready to upload
 
