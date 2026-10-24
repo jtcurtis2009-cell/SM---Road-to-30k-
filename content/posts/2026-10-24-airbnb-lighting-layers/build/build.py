@@ -1,4 +1,4 @@
-"""Airbnb lighting layers Reel: 30s, 120 bpm, cuts on the beat.
+"""Airbnb lighting layers Reel: 30s flow edit: soft dissolves, slow push in, 96 bpm bed.
 
 Usage: python3 build.py <IMG_2319.mov> <out_dir> [--styles A,B,C,D,E]
 Raw clip is not committed. Source is iPhone HLG HDR, tonemapped to SDR here.
@@ -11,33 +11,41 @@ ROOT = Path(__file__).resolve().parents[4]
 FONTS = ROOT / "brand" / "fonts"
 P = json.loads((ROOT / "brand" / "palette.json").read_text())
 W, H, FPS, BEAT = 1080, 1920, 30, 0.5
-HANDLE = "@justinthymecurtis"
 
-# (source second, beats). 60 beats = 30s.
+# Speed ramp edit: each shot drifts in slow motion, then whips fast into the next. Last shot stays slow.
+# (source second, seconds on screen, section). Durations are scaled so the Reel is exactly 30s.
+XF = 0.12  # tiny blend at the fast peak
+SLOW, FAST, RAMP = 0.5, 3.0, 0.3  # slow motion speed, whip speed, share of each shot spent ramping
 SHOTS = [
-    # hook: lock glow
-    (2.0, 2), (4.5, 1), (6.2, 1), (7.0, 2),
-    # layer 1 wash the walls
-    (11.3, 1), (14.2, 1), (15.1, 1), (16.0, 3), (17.3, 2), (28.2, 1), (30.2, 2),
-    # layer 2 hide the source
-    (24.0, 1), (25.3, 1), (26.2, 2), (36.2, 2), (37.6, 1), (38.5, 1), (42.3, 1), (118.4, 2),
-    # layer 3 one statement piece
-    (39.5, 1), (40.4, 1), (44.6, 1), (48.4, 1), (50.3, 1), (51.5, 2), (53.0, 3), (55.0, 2), (59.2, 1), (60.3, 1),
-    # layer 4 color after dark
-    (63.3, 1), (64.2, 1), (70.3, 1), (71.2, 1), (75.4, 1), (76.3, 2), (98.0, 1), (105.3, 1),
-    # close: back to the lock so it loops
-    (82.2, 1), (0.0, 8),
+    (2.0, 1.9, 0), (4.3, 1.8, 0),
+    (13.8, 2.2, 1), (15.6, 2.4, 1), (29.8, 1.8, 1),
+    (24.0, 2.4, 2), (36.0, 1.8, 2), (117.2, 2.2, 2),
+    (39.2, 2.2, 3), (50.6, 2.2, 3), (53.0, 2.8, 3),
+    (63.0, 1.9, 4), (70.0, 1.9, 4), (75.6, 2.0, 4),
+    (59.4, 4.2, 5),
 ]
-assert sum(b for _, b in SHOTS) == 60
+_k = (30 + XF * (len(SHOTS) - 1)) / sum(d for _, d, _ in SHOTS)
+SHOTS = [(t, d * _k, sec) for t, d, sec in SHOTS]
 
-TEXT = [  # (start, end, small setup, big word)
-    (0.0, 3.0, "4 lighting layers that", "sell the stay"),
-    (3.0, 8.5, "layer 1", "wash the walls"),
-    (8.5, 14.0, "layer 2", "hide the source"),
-    (14.0, 21.0, "layer 3", "one statement piece"),
-    (21.0, 25.5, "layer 4", "color after dark"),
-    (25.5, 30.0, "save this for your", "next furnish"),
+COPY = [  # (small setup, big line) per section
+    ("great airbnbs aren't furnished,", "they're lit"),
+    ("aim light at the walls,", "not the floor"),
+    ("hide the bulb,", "show the glow"),
+    ("one fixture guests", "photograph"),
+    ("after sunset,", "light the water"),
+    ("your photos are only as good as", "your light"),
 ]
+
+
+def text_times():
+    starts, t = [], 0.0
+    for i, (_, d, sec) in enumerate(SHOTS):
+        if not starts or sec != SHOTS[i - 1][2]:
+            starts.append(max(0.0, t - (XF / 2 if i else 0)))
+        t += d - XF
+    ends = starts[1:] + [30.0]
+    return [(a, b, *c) for a, b, c in zip(starts, ends, COPY)]
+
 
 # Grade: tonemap HLG, warm the shadows, glow on the practicals, soft vignette.
 TONEMAP = "zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p"
@@ -51,17 +59,28 @@ def run(cmd):
     subprocess.run(cmd, check=True)
 
 
-def cut(src, i, t, beats, tmp):
-    n = int(round(beats * BEAT * FPS))
-    zoom = "1+0.12*max(0\\,1-t/0.25)" if i % 2 else "1.04+0.03*t"  # punch in on alternating cuts, slow push on the rest
-    flash = "0.18*max(0\\,1-t/0.12)" if i else "0"  # quick light flash on every cut
-    vf = (f"[0:v]{TONEMAP},fps={FPS},setpts=PTS-STARTPTS,"
+def cut(src, i, t, dur, tmp):
+    n = int(round(dur * FPS))
+    last = i == len(SHOTS) - 1
+    slow_out = dur if last else dur * (1 - RAMP)
+    fast_out = 0 if last else dur * RAMP
+    s_src, f_src = slow_out * SLOW, fast_out * FAST
+    smooth = "minterpolate=fps=60:mi_mode=mci:mc_mode=aobmc:vsbmc=1"
+    if last:
+        speed = f"{smooth},setpts={1 / SLOW}*PTS,fps={FPS}"
+    else:
+        speed = (f"split[a][b];[a]trim=0:{s_src:.3f},setpts=PTS-STARTPTS,{smooth},setpts={1 / SLOW}*PTS,fps={FPS}[sa];"
+                 f"[b]trim={s_src:.3f}:{s_src + f_src:.3f},setpts=PTS-STARTPTS,setpts=PTS/{FAST},tmix=frames=4,fps={FPS}[fa];"
+                 f"[sa][fa]concat=n=2:v=1")
+    r0 = slow_out / dur
+    zoom = f"1.02+0.03*t/{dur:.3f}+0.10*pow(max(0\\,t/{dur:.3f}-{r0:.3f})/{max(1 - r0, 0.01):.3f}\\,2)"
+    vf = (f"[0:v]{TONEMAP},{speed},setpts=PTS-STARTPTS,"
           f"scale={W}:{H}:force_original_aspect_ratio=increase:flags=lanczos,crop={W}:{H},"
           f"scale=w='trunc({W}*({zoom})/2)*2':h='trunc({H}*({zoom})/2)*2':eval=frame,crop={W}:{H},"
-          f"unsharp=5:5:0.8,{GRADE},eq=brightness='{flash}':eval=frame,format=yuv420p")
-    out = tmp / f"s{i:02d}.mp4"
-    run(["ffmpeg", "-v", "error", "-y", "-ss", str(t), "-i", str(src), "-filter_complex", vf, "-frames:v", str(n),
-         "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "16", str(out)])
+          f"unsharp=5:5:0.8,{GRADE},format=yuv420p")
+    out = tmp / f"r{i:02d}.mp4"
+    run(["ffmpeg", "-v", "error", "-y", "-ss", str(t), "-t", f"{s_src + f_src + 0.5:.3f}", "-i", str(src),
+         "-filter_complex", vf, "-frames:v", str(n), "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "16", str(out)])
     return out
 
 
@@ -85,7 +104,7 @@ def style(name):
     oak, bone = hexc(P["rust_light"]), (255, 255, 255, 255)
     if name == "A":  # Montserrat Black caps, black outline
         mf = lambda s: font("Montserrat%5Bwght%5D.ttf", s, [900])
-        return dict(sf=mf(54), bf=mf(150), bc=bone, sc=bone, upper=True, stroke=8, lh=0.98)
+        return dict(sf=mf(44), bf=mf(150), bc=bone, sc=bone, upper=True, stroke=8, lh=0.98)
     if name == "B":  # Anton caps, oak big word
         return dict(sf=font("DMSans[opsz,wght].ttf", 54, [14, 700]), bf=font("Anton-Regular.ttf", 190),
                     bc=oak, sc=bone, upper=True, stroke=0, lh=1.0)
@@ -114,7 +133,7 @@ def wrap(text, f, maxw, d):
     return lines
 
 
-def overlay(setup, big, s, end=False):
+def overlay(setup, big, s):
     img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     d = ImageDraw.Draw(img)
     if s["upper"]:
@@ -134,12 +153,6 @@ def overlay(setup, big, s, end=False):
         d.text((W / 2, y), ln, font=s["bf"], fill=s["bc"], anchor="mt",
                stroke_width=s["stroke"], stroke_fill=(0, 0, 0, 255))
         y += int(asc * s["lh"])
-    if end:
-        hf = font("DMSans[opsz,wght].ttf", 40, [14, 700])
-        tw = d.textlength(HANDLE, font=hf)
-        y += 30
-        d.rounded_rectangle([W / 2 - tw / 2 - 34, y, W / 2 + tw / 2 + 34, y + 76], 38, fill=hexc(P["rust"]))
-        d.text((W / 2, y + 38), HANDLE, font=hf, fill=hexc(P["sand"]), anchor="mm")
     # soft shadow
     txt = img
     a = txt.split()[3].filter(ImageFilter.GaussianBlur(14))
@@ -152,20 +165,27 @@ def main(src, out_dir, styles):
     tmp = out / "_tmp"; tmp.mkdir(exist_ok=True)
     base = out / "base.mp4"
     if not base.exists():
-        parts = [cut(src, i, t, b, tmp) for i, (t, b) in enumerate(SHOTS)]
-        (tmp / "list.txt").write_text("".join(f"file '{p.name}'\n" for p in parts))
-        run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", str(tmp / "list.txt"), "-c", "copy", str(base)])
+        parts = [cut(src, i, t, d, tmp) for i, (t, d, _) in enumerate(SHOTS)]
+        inp, fc, last, off = [], "", "0:v", 0.0
+        for i, pth in enumerate(parts):
+            inp += ["-i", str(pth)]
+            if i:
+                off += SHOTS[i - 1][1] - XF
+                fc += f"[{last}][{i}:v]xfade=transition=fade:duration={XF}:offset={off:.3f}[x{i}];"
+                last = f"x{i}"
+        run(["ffmpeg", "-v", "error", "-y", *inp, "-filter_complex", fc.rstrip(";"), "-map", f"[{last}]", "-t", "30",
+             "-c:v", "libx264", "-preset", "veryfast", "-crf", "16", "-pix_fmt", "yuv420p", str(base)])
     beat = out / "beat.wav"
     if not beat.exists():
-        run(["python3", str(Path(__file__).parent / "make_beat.py"), str(beat), "--bpm", "120", "--seconds", "30", "--mood", "bright"])
+        run(["python3", str(Path(__file__).parent / "make_beat.py"), str(beat), "--bpm", "96", "--seconds", "30", "--mood", "dark"])
     for name in styles:
         s = style(name)
         pngs, inputs, chain, last = [], [], "", "0:v"
-        for k, (a, b, setup, big) in enumerate(TEXT):
+        for k, (a, b, setup, big) in enumerate(text_times()):
             p = tmp / f"t{name}{k}.png"
-            overlay(setup, big, s, end=(k == len(TEXT) - 1)).save(p)
+            overlay(setup, big, s).save(p)
             inputs += ["-loop", "1", "-t", "30", "-i", str(p)]
-            chain += (f"[{k + 2}:v]format=rgba,fade=in:st={a}:d=0.12:alpha=1[o{k}];"
+            chain += (f"[{k + 2}:v]format=rgba,fade=in:st={a}:d=0.3:alpha=1[o{k}];"
                       f"[{last}][o{k}]overlay=0:0:enable='between(t,{a},{b - 0.001})'[v{k}];")
             last = f"v{k}"
         for silent in (False, True):
@@ -176,7 +196,7 @@ def main(src, out_dir, styles):
                  "-c:v", "libx264", "-preset", "veryfast", "-crf", "19", "-pix_fmt", "yuv420p",
                  "-movflags", "+faststart", str(f)])
         fr = tmp / "coverframe.png"
-        run(["ffmpeg", "-v", "error", "-y", "-ss", "19.2", "-i", str(base), "-frames:v", "1", str(fr)])
+        run(["ffmpeg", "-v", "error", "-y", "-ss", "17.5", "-i", str(base), "-frames:v", "1", str(fr)])
         c = Image.open(fr).convert("RGBA"); c.alpha_composite(Image.open(tmp / f"t{name}0.png"))
         c.convert("RGB").save(out / f"cover-{name}.jpg", quality=92)
         print("built", name)
