@@ -3,3 +3,5 @@ __pycache__/
 .DS_Store
 raw/
 exports/*/_work/
+exports/*/_tmp/
+exports/*/base.mp4
