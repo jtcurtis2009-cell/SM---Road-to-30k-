@@ -30,6 +30,7 @@ Read `brand/style-guide.md` before planning or writing. It holds the Bloom found
 * `scripts/render_carousel.py` renders `slides.json` to 1080x1350 PNGs in `exports/<slug>/`
 * `scripts/make_reel.py` cuts a branded Reel from raw footage using `reel.json` (segments, speed, text overlays) into `exports/<slug>/reel.mp4`
 * `raw/` raw footage, never committed
+* `site/` link in bio landing page (`index.html`, lead form). Setup checklist and research in `docs/link-in-bio.md`. Run the dash check on any copy change. It must show Justin's DRE # and broker before going live.
 
 ## Google Drive source folders (personal Drive, jtcurtis.2009@gmail.com)
 Parent: **Instagram Footage** https://drive.google.com/drive/folders/16HAhHcmIoRFeA1vQYalFzcKGw4Gi1nOu
